@@ -35,7 +35,7 @@ struct MainView: View {
                     Button {
                         showingCalendarFilter.toggle()
                     } label: {
-                        Image(systemName: "calendar.badge.plus")
+                        Image(systemName: "calendar")
                             .font(.title2)
                             .foregroundColor(.black)
                     }
