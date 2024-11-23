@@ -58,7 +58,7 @@ struct MainView: View {
             ZStack() {
                 Rectangle()
                     .fill(Color.colorBar)
-                    .frame(height: 100)
+                    .frame(height: 92)
                     .cornerRadius(25.0)
                 HStack(alignment: .center) {
                     Button {
@@ -118,7 +118,7 @@ struct MainView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 30)
+                .padding([.leading, .bottom, .trailing], 30)
             }
         }
         .edgesIgnoringSafeArea(.vertical)
