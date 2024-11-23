@@ -11,6 +11,10 @@ import FirebaseAuth
 
 class FirebaseService{
     
+    static let shared = FirebaseService()
+    
+    private init() {}
+    
     //Функция для регистрации пользователя
     func register(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>)->Void){ //Result<AuthDataResult, Error> - тип данных
         

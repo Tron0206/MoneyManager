@@ -10,7 +10,7 @@ import Firebase
 import FirebaseAuth
 
 class FirebaseServiceTester {
-    let firebaseService = FirebaseService()
+    let firebaseService = FirebaseService.shared
 
     func testRegister() {
         firebaseService.register(email: "test@example.com", password: "TestPassword123") { result in
