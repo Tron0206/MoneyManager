@@ -11,6 +11,7 @@
 		032B99A72CEE600300203B6A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 032B99A62CEE600300203B6A /* FirebaseStorage */; };
 		032B99A92CF1DC4700203B6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032B99A82CF1DC4700203B6A /* GoogleService-Info.plist */; };
 		032B99AB2CF1DDF400203B6A /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032B99AA2CF1DDF400203B6A /* FirebaseService.swift */; };
+		032B99AD2CF1FE3700203B6A /* Test_FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032B99AC2CF1FE3700203B6A /* Test_FirebaseService.swift */; };
 		8F06F16C2CEA33E400FA845B /* MoneyManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06F16B2CEA33E400FA845B /* MoneyManagerApp.swift */; };
 		8F06F16E2CEA33E400FA845B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06F16D2CEA33E400FA845B /* ContentView.swift */; };
 		8F06F1702CEA33E500FA845B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F06F16F2CEA33E500FA845B /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		032B99A82CF1DC4700203B6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		032B99AA2CF1DDF400203B6A /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		032B99AC2CF1FE3700203B6A /* Test_FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_FirebaseService.swift; sourceTree = "<group>"; };
 		8F06F1682CEA33E400FA845B /* MoneyManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F06F16B2CEA33E400FA845B /* MoneyManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyManagerApp.swift; sourceTree = "<group>"; };
 		8F06F16D2CEA33E400FA845B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				8F06F16B2CEA33E400FA845B /* MoneyManagerApp.swift */,
 				8F06F16D2CEA33E400FA845B /* ContentView.swift */,
 				032B99AA2CF1DDF400203B6A /* FirebaseService.swift */,
+				032B99AC2CF1FE3700203B6A /* Test_FirebaseService.swift */,
 				8F06F16F2CEA33E500FA845B /* Assets.xcassets */,
 				8F06F1712CEA33E500FA845B /* Preview Content */,
 			);
@@ -157,6 +160,7 @@
 			files = (
 				8F06F16E2CEA33E400FA845B /* ContentView.swift in Sources */,
 				032B99AB2CF1DDF400203B6A /* FirebaseService.swift in Sources */,
+				032B99AD2CF1FE3700203B6A /* Test_FirebaseService.swift in Sources */,
 				8F06F16C2CEA33E400FA845B /* MoneyManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
