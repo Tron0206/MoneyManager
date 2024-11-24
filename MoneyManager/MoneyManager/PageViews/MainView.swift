@@ -42,6 +42,7 @@ struct MainView: View {
                     .padding(.trailing, 25)
                 }
             }
+            .padding(.bottom, -8)
             
             
             TabView(selection: $selectedTab) {
@@ -52,7 +53,7 @@ struct MainView: View {
                     .tag(1)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .padding(.top, 5)
+            .padding(.top, 10)
             
             
             ZStack() {
@@ -129,6 +130,7 @@ struct MainView: View {
                 }
                 .padding([.leading, .bottom, .trailing], 30)
             }
+            .padding(.top, -8)
         }
         .edgesIgnoringSafeArea(.vertical)
         
