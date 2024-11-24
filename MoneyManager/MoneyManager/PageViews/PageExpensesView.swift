@@ -23,7 +23,6 @@ struct PageExpensesView: View {
                     .padding(.top, 1)
                 Text("17 апр. - 29 сент.")     //TODO: Сделать так чтобы писались выбранные временные промежутки
                     .font(.system(size: 16))
-                    .foregroundStyle(.black) //Изменить для темной версии
             }
                 
             PieChartView(categories: categories, forWhat: "Expense")
@@ -42,19 +41,16 @@ struct PageExpensesView: View {
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                 }
-                .foregroundStyle(.black) //Изменить для темной версии
             }
             
             ScrollView {
                 VStack {
                     ForEach(categories) { category in
                         CategoryRow(category: category, forWhat: "Expense")
-                            .foregroundStyle(.black)
                     }
                 }
             }
         }
-        .background(Color.white)  //Изменить для темной версии
     }
 }
 

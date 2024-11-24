@@ -27,7 +27,8 @@ struct CategoryRow: View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                 .stroke(Color.gray.opacity(0.3))
-                .frame(width: 345, height: 40)
+                .frame(height: 40)
+                .padding(.horizontal, 20)
             HStack {
                 Circle()
                     .fill(category.getColor())

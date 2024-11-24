@@ -21,7 +21,6 @@ struct PageIncomeView: View {
                     .padding(.top, 1)
                 Text("17 апр. - 29 сент.")     //TODO: Сделать так чтобы писались выбранные временные промежутки
                     .font(.system(size: 16))
-                    .foregroundStyle(.black) //Изменить для темной версии
             }
                 
             PieChartView(categories: categories, forWhat: "Income")
@@ -40,18 +39,15 @@ struct PageIncomeView: View {
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                 }
-                .foregroundStyle(.black) //Изменить для темной версии
             }
             ScrollView {
                 VStack {
                     ForEach(categories) { category in
                         CategoryRow(category: category, forWhat: "Income")
-                            .foregroundStyle(.black)
                     }
                 }
             }
         }
-        .background(Color.white)  //Изменить для темной версии
     }
 }
 

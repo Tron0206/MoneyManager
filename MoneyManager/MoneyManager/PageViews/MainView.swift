@@ -51,8 +51,8 @@ struct MainView: View {
                 PageExpensesView(categories: modelData.categories)
                     .tag(1)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .padding(.top, 5)
             
             
             ZStack() {
@@ -81,22 +81,31 @@ struct MainView: View {
                     VStack(alignment: .center) {
                         if selectedTab == 0 {
                             Text("Доходы")
+                                .foregroundStyle(.black)
                                 .font(.system(size: 20))
                                 .frame(maxHeight: 25)
                         } else {
                             Text("Расходы")
+                                .foregroundStyle(.black)
                                 .font(.system(size: 20))
                                 .frame(maxHeight: 25)
                         }
                         
                         HStack {
-                            Circle()
-                                .fill(selectedTab == 0 ? Color.white : Color.gray)
-                                .frame(width: 7, height: 7)
-                                        
-                            Circle()
-                                .fill(selectedTab == 1 ? Color.white : Color.gray)
-                                .frame(width: 7, height: 7)
+                            Button {
+                                selectedTab = 0
+                            } label: {
+                                Circle()
+                                    .fill(selectedTab == 0 ? Color.white : Color.gray)
+                                    .frame(width: 7, height: 7)
+                            }
+                            Button {
+                                selectedTab = 1
+                            } label: {
+                                Circle()
+                                    .fill(selectedTab == 1 ? Color.white : Color.gray)
+                                    .frame(width: 7, height: 7)
+                            }
                         }
                         .frame(maxHeight: 0)
                     }
