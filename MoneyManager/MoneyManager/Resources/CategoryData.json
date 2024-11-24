@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Категория 1",
+        "id": 1001,
+        "income": 37000,
+        "expenses": 17000,
+        "color": "#E35B5B"
+    },
+    {
+        "name": "Категория 2",
+        "id": 1002,
+        "income": 27000,
+        "expenses": 27000,
+        "color": "#F4AF5A"
+    },
+    {
+        "name": "Категория 3",
+        "id": 1003,
+        "income": 17000,
+        "expenses": 37000,
+        "color": "#F7E223"
+    },
+    {
+        "name": "Категория 4",
+        "id": 1004,
+        "income": 27000,
+        "expenses": 27000,
+        "color": "#98DE69"
+    },
+    {
+        "name": "Категория 5",
+        "id": 1005,
+        "income": 27000,
+        "expenses": 17000,
+        "color": "#93BCE9"
+    },
+    {
+        "name": "Категория 6",
+        "id": 1006,
+        "income": 27000,
+        "expenses": 27000,
+        "color": "#E187F8"
+    }
+]
