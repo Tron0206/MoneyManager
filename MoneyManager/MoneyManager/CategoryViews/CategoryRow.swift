@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CategoryRow: View {
     var category: Category
-    var forWhat: String?
+    var type: TransactionType
     
     var value: Int {
-        switch forWhat {
-        case "Income":
+        switch type {
+        case .income:
             return category.income
-        case "Expense":
+        case .expense:
             return category.expenses
         default:
             return 0
@@ -47,5 +47,5 @@ struct CategoryRow: View {
 }
 
 #Preview {
-    CategoryRow(category: ModelData().categories[0], forWhat: "Expense")
+    CategoryRow(category: ModelData().categories[0], type: .income)
 }

@@ -7,10 +7,18 @@
 
 import SwiftUI
 
-struct PageIncomeView: View {
+struct PageView: View {
     @EnvironmentObject var modelData: ModelData
     
     var categories: [Category]
+    var type: TransactionType
+    
+    var total: Int {
+        switch type {
+            case .income: return modelData.totalIncome
+            case .expense: return modelData.totalExpenses
+        }
+    }
     
     var body: some View {
         VStack {
@@ -23,7 +31,7 @@ struct PageIncomeView: View {
                     .font(.system(size: 16))
             }
                 
-            PieChartView(categories: categories, forWhat: "Income")
+            PieChartView(categories: categories, type: type)
                 .frame(width: 250.0)
                 
             ZStack {
@@ -35,7 +43,7 @@ struct PageIncomeView: View {
                     Text("Итого:")
                         .font(.system(size: 16))
                         .fontWeight(.medium)
-                    Text("\(modelData.totalIncome)")
+                    Text("\(total)")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                 }
@@ -43,7 +51,7 @@ struct PageIncomeView: View {
             ScrollView {
                 VStack {
                     ForEach(categories) { category in
-                        CategoryRow(category: category, forWhat: "Income")
+                        CategoryRow(category: category, type: type)
                     }
                 }
             }
@@ -52,6 +60,6 @@ struct PageIncomeView: View {
 }
 
 #Preview {
-    PageIncomeView(categories: ModelData().categories)
+    PageView(categories: ModelData().categories, type: .income)
         .environmentObject(ModelData())
 }

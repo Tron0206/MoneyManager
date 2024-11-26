@@ -12,11 +12,11 @@ struct PieChartView: View {
     @EnvironmentObject var modelData: ModelData
     
     let categories: [Category]
-    var forWhat: String 
+    var type: TransactionType
         
     var body: some View {
         Canvas { context, size in
-            let total = forWhat == "Income" ? Double(modelData.totalIncome) : Double(modelData.totalExpenses)
+            let total = type == .income ? Double(modelData.totalIncome) : Double(modelData.totalExpenses)
 
             context.translateBy(x: size.width * 0.5, y: size.height * 0.5)
             var pieContext = context
@@ -25,7 +25,7 @@ struct PieChartView: View {
             var startAngle = Angle.zero
             
             let slices: [(Double, Color)] = categories.map { category in
-                let value = forWhat == "Income" ? Double(category.income) : Double(category.expenses)
+                let value = type == .income ? Double(category.income) : Double(category.expenses)
                 return (value, category.getColor())
             }
                  
@@ -47,6 +47,6 @@ struct PieChartView: View {
 
 
 #Preview {
-    PieChartView(categories: ModelData().categories, forWhat: "Income")
+    PieChartView(categories: ModelData().categories, type: .income)
         .environmentObject(ModelData())
 }
