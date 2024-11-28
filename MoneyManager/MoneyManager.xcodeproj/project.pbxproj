@@ -3,23 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		8F06F16C2CEA33E400FA845B /* MoneyManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06F16B2CEA33E400FA845B /* MoneyManagerApp.swift */; };
-		8F06F16E2CEA33E400FA845B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06F16D2CEA33E400FA845B /* ContentView.swift */; };
 		8F06F1702CEA33E500FA845B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F06F16F2CEA33E500FA845B /* Assets.xcassets */; };
 		8F06F1732CEA33E500FA845B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F06F1722CEA33E500FA845B /* Preview Assets.xcassets */; };
+		C6E73C982CF905B70074454E /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E73C972CF905B70074454E /* AuthorizationView.swift */; };
+		C6E73C9B2CF906C80074454E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E73C9A2CF906C80074454E /* RegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8F06F1682CEA33E400FA845B /* MoneyManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F06F16B2CEA33E400FA845B /* MoneyManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyManagerApp.swift; sourceTree = "<group>"; };
-		8F06F16D2CEA33E400FA845B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F06F16F2CEA33E500FA845B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F06F1722CEA33E500FA845B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C6E73C972CF905B70074454E /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		C6E73C9A2CF906C80074454E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C6E73CA82CF908A80074454E /* font */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = font; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8F06F1652CEA33E400FA845B /* Frameworks */ = {
@@ -51,8 +57,10 @@
 		8F06F16A2CEA33E400FA845B /* MoneyManager */ = {
 			isa = PBXGroup;
 			children = (
+				C6E73CA82CF908A80074454E /* font */,
 				8F06F16B2CEA33E400FA845B /* MoneyManagerApp.swift */,
-				8F06F16D2CEA33E400FA845B /* ContentView.swift */,
+				C6E73C972CF905B70074454E /* AuthorizationView.swift */,
+				C6E73C9A2CF906C80074454E /* RegistrationView.swift */,
 				8F06F16F2CEA33E500FA845B /* Assets.xcassets */,
 				8F06F1712CEA33E500FA845B /* Preview Content */,
 			);
@@ -81,6 +89,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C6E73CA82CF908A80074454E /* font */,
 			);
 			name = MoneyManager;
 			productName = MoneyManager;
@@ -137,8 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F06F16E2CEA33E400FA845B /* ContentView.swift in Sources */,
+				C6E73C982CF905B70074454E /* AuthorizationView.swift in Sources */,
 				8F06F16C2CEA33E400FA845B /* MoneyManagerApp.swift in Sources */,
+				C6E73C9B2CF906C80074454E /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
