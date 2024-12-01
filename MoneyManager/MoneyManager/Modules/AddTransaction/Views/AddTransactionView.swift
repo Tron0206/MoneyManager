@@ -149,7 +149,7 @@ struct AddTransactionView: View {
                 
                 let transaction = TransactionModel(
                     name: transactionName,
-                    value: Double(transactionValue)!,
+                    value: Double(transactionValue.replacingOccurrences(of: ",", with: "."))!,
                     date: transactionDate,
                     transactionType: transactionTypeEnum,
                     description: transactionDescription,

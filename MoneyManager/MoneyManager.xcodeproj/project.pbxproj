@@ -138,13 +138,13 @@
 			path = CategoryViews;
 			sourceTree = "<group>";
 		};
-		2CCD597C2CFCC1C500FB2553 /* AddTransactionModule */ = {
+		2CCD597C2CFCC1C500FB2553 /* AddTransaction */ = {
 			isa = PBXGroup;
 			children = (
 				2CCD597E2CFCC1F400FB2553 /* Views */,
 				2CCD597D2CFCC1E100FB2553 /* Model */,
 			);
-			path = AddTransactionModule;
+			path = AddTransaction;
 			sourceTree = "<group>";
 		};
 		2CCD597D2CFCC1E100FB2553 /* Model */ = {
@@ -210,7 +210,7 @@
 		8F23D9782CF8FC3400C5F99C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				2CCD597C2CFCC1C500FB2553 /* AddTransactionModule */,
+				2CCD597C2CFCC1C500FB2553 /* AddTransaction */,
 				8FB5CD5F2CFC9F6000534832 /* Authorization */,
 				8F23D9792CF8FD0500C5F99C /* MainModule */,
 			);
