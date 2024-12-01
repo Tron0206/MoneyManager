@@ -49,16 +49,16 @@ struct MainView: View {
                 title: Text("A Short Title is Best"),
                 message: Text("A message should be a short, complete sentence."),
                 buttons: [
-                    .default(Text("Action")) {  // TODO: Сделать выбор промежутков времени
+                    .default(Text("День")) {  // TODO: Сделать выбор промежутков времени
                             
                     },
-                    .default(Text("Action")) {
+                    .default(Text("Месяц")) {
 
                     },
-                    .default(Text("Action")) {
+                    .default(Text("Год")) {
                             
                     },
-                    .default(Text("Action")) {
+                    .default(Text("Период")) {
                             
                     },
                     .cancel()
