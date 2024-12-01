@@ -19,26 +19,29 @@ struct MainView: View {
     @State private var selectedTab = 0
     
     var body: some View {
-        VStack {
-            TopBar(showingCalendarFilter: $showingCalendarFilter)
-                .padding(.bottom, -8)
-            
-            
-            TabView(selection: $selectedTab) {
-                PageView(categories: modelData.categories, type: .income)
-                    .tag(0)
-                        
-                PageView(categories: modelData.categories, type: .expense)
-                    .tag(1)
+        NavigationView {
+            VStack {
+                TopBar(showingCalendarFilter: $showingCalendarFilter)
+                    .padding(.bottom, -8)
+                
+                
+                TabView(selection: $selectedTab) {
+                    PageView(categories: modelData.categories, type: .income)
+                        .tag(0)
+                    
+                    PageView(categories: modelData.categories, type: .expense)
+                        .tag(1)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .padding(.top, 10)
+                
+                
+                BottomBar(selectedTab: $selectedTab)
+                    .padding(.top, -8)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .padding(.top, 10)
-            
-            
-            BottomBar(selectedTab: $selectedTab)
-                .padding(.top, -8)
+            .edgesIgnoringSafeArea(.vertical)
         }
-        .edgesIgnoringSafeArea(.vertical)
+        .tint(.black)
         
         
         .actionSheet(isPresented: $showingCalendarFilter) {

@@ -68,8 +68,8 @@ struct BottomBar: View {
                 
                 Spacer()
                 
-                Button {
-                    //do sth
+                NavigationLink {
+                    AddTransactionView()
                 } label: {
                     ZStack {
                         Rectangle()
