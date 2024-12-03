@@ -37,6 +37,7 @@
 		8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD712CFCAAE100534832 /* Fonts.swift */; };
 		8FB5CD752CFCAC9500534832 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD742CFCAC9500534832 /* PasswordField.swift */; };
 		8FB5CD772CFCACB300534832 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD762CFCACB300534832 /* CustomTextField.swift */; };
+		C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC98982CFE56C3001C8CFD /* SelectionPeriodView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		8FB5CD712CFCAAE100534832 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8FB5CD742CFCAC9500534832 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		8FB5CD762CFCACB300534832 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		C6AC98982CFE56C3001C8CFD /* SelectionPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPeriodView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		8F06F16A2CEA33E400FA845B /* MoneyManager */ = {
 			isa = PBXGroup;
 			children = (
+				C6AC98972CFE5681001C8CFD /* Period */,
 				8FB5CD6F2CFCAA5700534832 /* Info.plist */,
 				8F23D97A2CF8FD4400C5F99C /* App */,
 				8FB5CD732CFCAC7D00534832 /* Views */,
@@ -248,6 +251,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C6AC98972CFE5681001C8CFD /* Period */ = {
+			isa = PBXGroup;
+			children = (
+				C6AC98982CFE56C3001C8CFD /* SelectionPeriodView.swift */,
+			);
+			path = Period;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -340,6 +351,7 @@
 				8FB5CD772CFCACB300534832 /* CustomTextField.swift in Sources */,
 				8F23D9732CF8FB2700C5F99C /* FirebaseAuthService.swift in Sources */,
 				2CBBACA62CF1E3F4005EDE41 /* CategoryRow.swift in Sources */,
+				C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */,
 				8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */,
 				2CBBAC9D2CF12E90005EDE41 /* ModelData.swift in Sources */,
 				2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */,
