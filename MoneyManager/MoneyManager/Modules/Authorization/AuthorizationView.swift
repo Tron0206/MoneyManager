@@ -8,52 +8,84 @@
 import SwiftUI
 
 class AuthorizationViewModel: ObservableObject {
-    enum EmailValidateError: Error {
-        case empty
-        case incorrectFormat
-        case incorrectDomen
-        case hasWhitespace
+    enum ValidateError: Error {
+        case emailEmpty
+        case emailIncorrectFormat
+        case emailIncorrectDomen
+        case emailHasWhitespace
+        case passwordEmpty
+        
+        var errorDescription: String {
+            switch self {
+            case .emailEmpty:
+                return "Email обязателен"
+            case .emailIncorrectFormat:
+                return "Неверный формат email"
+            case .emailIncorrectDomen:
+                return "Неверный формат домена (две точки подряд)"
+            case .emailHasWhitespace:
+                return "Email не может содержать пробелы"
+            case .passwordEmpty:
+                return "Пустой пароль"
+            }
+        }
     }
     
-    var email = ""
-    var password = ""
-    var passwordTextFieldSecure = false
-    var hasError = false
+    @Published var email = ""
+    @Published var password = ""
+    @Published var passwordTextFieldSecure = false
+    @Published var hasError = false
+    @Published var errorText = ""
     
     
-//    func validateUserData() {
-//        try {
-//            
-//        }
-//        catch {
-//            
-//        }
-//    }
+    func validateUserData() {
+        do {
+            try validateEmail(email)
+            if email.isEmpty {
+                throw ValidateError.passwordEmpty
+            }
+        }
+        catch let error {
+            hasError = true
+            guard let error = error as? ValidateError else {
+                errorText = "Неизвестная ошибка"
+                return
+            }
+            errorText = error.errorDescription
+        }
+    }
     
-//    private func validateEmail(_ email: String) throws {
-//        if email.isEmpty {
-//            throw "Email обязателен"
-//        }
-//
-//        // Регулярное выражение для базовой валидации email
-//        let emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
-//        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-//
-//        // Проверка на неправильный формат
-//        if !emailTest.evaluate(with: email) {
-//            throw "Email обязателен"
-//        }
-//
-//        // Дополнительная проверка для домена, например, двойных точек
-//        if email.contains("..") {
-//            throw "Email обязателен"
-//        }
-//
-//        // Проверка на символы пробела
-//        if email.contains(" ") {
-//            throw "Email обязателен"
-//        }
-//    }
+    func logIn() {
+        FirebaseAuthService.shared.logIn(email: email, password: password) { result in
+            switch result {
+            case .success(let id):
+                print(id)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func validateEmail(_ email: String) throws {
+        if email.isEmpty {
+            throw ValidateError.emailEmpty
+        }
+
+        let emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+
+        if !emailTest.evaluate(with: email) {
+            throw ValidateError.emailIncorrectFormat
+        }
+
+        if email.contains("..") {
+            throw ValidateError.emailIncorrectDomen
+        }
+
+        if email.contains(" ") {
+            throw ValidateError.emailHasWhitespace
+        }
+    }
 }
 
 struct AuthorizationView: View {
@@ -79,12 +111,8 @@ struct AuthorizationView: View {
                 
                 VStack(spacing: 14) {
                     Button(action: {
-                        if !viewModel.hasError {
-                            print(viewModel.email)
-                            print(viewModel.password)
-                        } else {
-                            viewModel.hasError = false
-                        }
+                        viewModel.validateUserData()
+                        viewModel.logIn()
                     }, label: {
                         Text("Войти")
                             .frame(maxWidth: .infinity)
@@ -110,14 +138,13 @@ struct AuthorizationView: View {
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Image("background").resizable().ignoresSafeArea())
-                .blur(radius: viewModel.hasError ? 2 : 0)
         }
         .onTapGesture {
             isFocused = false
         }
         .alert(isPresented: $viewModel.hasError) {
-            Alert(title: Text("Неверные данные"),
-                  message: Text("Проверьте корректность введенной информации"),
+            Alert(title: Text("Ошибка"),
+                  message: Text(viewModel.errorText),
                   dismissButton: .default(Text("OK"))
             )
         }
