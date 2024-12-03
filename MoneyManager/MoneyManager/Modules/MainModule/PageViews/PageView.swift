@@ -24,7 +24,7 @@ struct PageView: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                    .stroke(Color.colorBar.opacity(0.5), lineWidth: 2)
+                    .stroke(Color(hex: "498DB4").opacity(0.5), lineWidth: 2)
                     .frame(width: 140, height: 30)
                     .padding(.top, 1)
                 Text("17 апр. - 29 сент.")     //TODO: Сделать так чтобы писались выбранные временные промежутки
@@ -36,7 +36,7 @@ struct PageView: View {
                 
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                    .stroke(Color.colorBar, lineWidth: 2.5)
+                    .stroke(Color(hex: "498DB4"), lineWidth: 2.5)
                     .frame(width: 163, height: 45)
                     
                 HStack {

@@ -13,7 +13,7 @@ struct BottomBar: View {
     var body: some View {
         ZStack() {
             Rectangle()
-                .fill(Color.colorBar)
+                .fill(Color(hex: "498DB4"))
                 .frame(height: 92)
                 .cornerRadius(25.0)
             HStack(alignment: .center) {
@@ -22,12 +22,12 @@ struct BottomBar: View {
                 } label: {
                     ZStack {
                         Rectangle()
-                            .fill(Color(hex: "#7BA0CC"))
+                            .fill(Color(hex: "498DB4"))
                             .cornerRadius(10.0)
-                            .shadow(radius: 5, x: 0, y: 5)
+//                            .shadow(radius: 5, x: 0, y: 5)
                             .frame(width: 65, height: 46)
                         Image(systemName: "person")
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.white)
                             .font(.title)
                     }
                 }
@@ -37,12 +37,12 @@ struct BottomBar: View {
                 VStack(alignment: .center) {
                     if selectedTab == 0 {
                         Text("Доходы")
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.white)
                             .font(.system(size: 20))
                             .frame(maxHeight: 25)
                     } else {
                         Text("Расходы")
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.white)
                             .font(.system(size: 20))
                             .frame(maxHeight: 25)
                     }
@@ -73,12 +73,12 @@ struct BottomBar: View {
                 } label: {
                     ZStack {
                         Rectangle()
-                            .fill(Color(hex: "#7BA0CC"))
+                            .fill(Color(hex: "498DB4"))
                             .cornerRadius(10.0)
-                            .shadow(radius: 5, x: 0, y: 5)
+//                            .shadow(radius: 5, x: 0, y: 5)
                             .frame(width: 65, height: 46)
                         Image(systemName: "plus")
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.white)
                             .font(.title)
                     }
                 }
