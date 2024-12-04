@@ -13,7 +13,7 @@ struct TopBar: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             Rectangle()
-                .fill(Color.colorBar)
+                .fill(Color(hex: "498DB4"))
                 .frame(height: 100)
                 .cornerRadius(25.0)
             
@@ -21,7 +21,7 @@ struct TopBar: View {
                 Spacer()
                 Text("Money Manager")
                     .font(.system(size: 24))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding(.bottom, 10)
                     .padding(.leading, 45)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -33,7 +33,7 @@ struct TopBar: View {
                 } label: {
                     Image(systemName: "calendar")
                         .font(.title2)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
                 .padding(.trailing, 25)
             }
