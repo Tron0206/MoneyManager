@@ -32,13 +32,14 @@
 		8FB5CD612CFC9F9B00534832 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD602CFC9F9B00534832 /* AuthorizationView.swift */; };
 		8FB5CD632CFC9FC900534832 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD622CFC9FC900534832 /* RegistrationView.swift */; };
 		8FB5CD662CFCA1B800534832 /* Color+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD652CFCA1B800534832 /* Color+hex.swift */; };
-		8FB5CD682CFCA9ED00534832 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD672CFCA9ED00534832 /* SF-Pro-Display-Medium.otf */; };
-		8FB5CD6A2CFCA9F900534832 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD692CFCA9F900534832 /* SF-Pro-Display-Bold.otf */; };
-		8FB5CD6C2CFCAA0400534832 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD6B2CFCAA0400534832 /* SF-Pro-Display-Regular.otf */; };
-		8FB5CD6E2CFCAA0D00534832 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD6D2CFCAA0D00534832 /* SF-Pro-Display-Semibold.otf */; };
+		8FB5CD682CFCA9ED00534832 /* SFProDisplayMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD672CFCA9ED00534832 /* SFProDisplayMedium.otf */; };
+		8FB5CD6A2CFCA9F900534832 /* SFProDisplayBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD692CFCA9F900534832 /* SFProDisplayBold.otf */; };
+		8FB5CD6C2CFCAA0400534832 /* SFProDisplayRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD6B2CFCAA0400534832 /* SFProDisplayRegular.otf */; };
+		8FB5CD6E2CFCAA0D00534832 /* SFProDisplaySemibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB5CD6D2CFCAA0D00534832 /* SFProDisplaySemibold.otf */; };
 		8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD712CFCAAE100534832 /* Fonts.swift */; };
 		8FB5CD752CFCAC9500534832 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD742CFCAC9500534832 /* PasswordField.swift */; };
 		8FB5CD772CFCACB300534832 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD762CFCACB300534832 /* CustomTextField.swift */; };
+		C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC98982CFE56C3001C8CFD /* SelectionPeriodView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,14 +66,15 @@
 		8FB5CD602CFC9F9B00534832 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		8FB5CD622CFC9FC900534832 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		8FB5CD652CFCA1B800534832 /* Color+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+hex.swift"; sourceTree = "<group>"; };
-		8FB5CD672CFCA9ED00534832 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
-		8FB5CD692CFCA9F900534832 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
-		8FB5CD6B2CFCAA0400534832 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
-		8FB5CD6D2CFCAA0D00534832 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		8FB5CD672CFCA9ED00534832 /* SFProDisplayMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayMedium.otf; sourceTree = "<group>"; };
+		8FB5CD692CFCA9F900534832 /* SFProDisplayBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayBold.otf; sourceTree = "<group>"; };
+		8FB5CD6B2CFCAA0400534832 /* SFProDisplayRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayRegular.otf; sourceTree = "<group>"; };
+		8FB5CD6D2CFCAA0D00534832 /* SFProDisplaySemibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplaySemibold.otf; sourceTree = "<group>"; };
 		8FB5CD6F2CFCAA5700534832 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8FB5CD712CFCAAE100534832 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8FB5CD742CFCAC9500534832 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		8FB5CD762CFCACB300534832 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		C6AC98982CFE56C3001C8CFD /* SelectionPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionPeriodView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		8F06F16A2CEA33E400FA845B /* MoneyManager */ = {
 			isa = PBXGroup;
 			children = (
+				C6AC98972CFE5681001C8CFD /* Period */,
 				8FB5CD6F2CFCAA5700534832 /* Info.plist */,
 				8F23D97A2CF8FD4400C5F99C /* App */,
 				8FB5CD732CFCAC7D00534832 /* Views */,
@@ -245,10 +248,10 @@
 		8FB5CD702CFCAAC300534832 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				8FB5CD6D2CFCAA0D00534832 /* SF-Pro-Display-Semibold.otf */,
-				8FB5CD6B2CFCAA0400534832 /* SF-Pro-Display-Regular.otf */,
-				8FB5CD692CFCA9F900534832 /* SF-Pro-Display-Bold.otf */,
-				8FB5CD672CFCA9ED00534832 /* SF-Pro-Display-Medium.otf */,
+				8FB5CD6D2CFCAA0D00534832 /* SFProDisplaySemibold.otf */,
+				8FB5CD6B2CFCAA0400534832 /* SFProDisplayRegular.otf */,
+				8FB5CD692CFCA9F900534832 /* SFProDisplayBold.otf */,
+				8FB5CD672CFCA9ED00534832 /* SFProDisplayMedium.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -260,6 +263,14 @@
 				8FB5CD762CFCACB300534832 /* CustomTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C6AC98972CFE5681001C8CFD /* Period */ = {
+			isa = PBXGroup;
+			children = (
+				C6AC98982CFE56C3001C8CFD /* SelectionPeriodView.swift */,
+			);
+			path = Period;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,14 +339,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FB5CD6E2CFCAA0D00534832 /* SF-Pro-Display-Semibold.otf in Resources */,
+				8FB5CD6E2CFCAA0D00534832 /* SFProDisplaySemibold.otf in Resources */,
 				2CBBACB32CF20C67005EDE41 /* CategoryData.json in Resources */,
 				8F23D9712CF8FAE200C5F99C /* GoogleService-Info.plist in Resources */,
-				8FB5CD6A2CFCA9F900534832 /* SF-Pro-Display-Bold.otf in Resources */,
+				8FB5CD6A2CFCA9F900534832 /* SFProDisplayBold.otf in Resources */,
 				8F06F1732CEA33E500FA845B /* Preview Assets.xcassets in Resources */,
 				8F06F1702CEA33E500FA845B /* Assets.xcassets in Resources */,
-				8FB5CD6C2CFCAA0400534832 /* SF-Pro-Display-Regular.otf in Resources */,
-				8FB5CD682CFCA9ED00534832 /* SF-Pro-Display-Medium.otf in Resources */,
+				8FB5CD6C2CFCAA0400534832 /* SFProDisplayRegular.otf in Resources */,
+				8FB5CD682CFCA9ED00534832 /* SFProDisplayMedium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +365,7 @@
 				8FB5CD772CFCACB300534832 /* CustomTextField.swift in Sources */,
 				8F23D9732CF8FB2700C5F99C /* FirebaseAuthService.swift in Sources */,
 				2CBBACA62CF1E3F4005EDE41 /* CategoryRow.swift in Sources */,
+				C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */,
 				8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */,
 				2CBBAC9D2CF12E90005EDE41 /* ModelData.swift in Sources */,
 				2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */,

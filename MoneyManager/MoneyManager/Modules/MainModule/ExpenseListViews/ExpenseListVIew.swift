@@ -33,7 +33,7 @@ struct ExpenseListView: View {
             // Верхняя панель
             ZStack(alignment: .bottom) {
                 Rectangle()
-                    .fill(Color.colorBar)
+                    .fill(Color(hex: "498DB4"))
                     .frame(height: 130)
                     .cornerRadius(25.0)
                 HStack {

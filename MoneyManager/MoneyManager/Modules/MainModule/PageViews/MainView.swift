@@ -17,6 +17,7 @@ struct MainView: View {
     @State private var showingCalendarFilter = false
     @State private var selectedTab = 0
     
+    @State private var isSelectionPeriod = false
     var body: some View {
         NavigationView{
             VStack {
@@ -51,23 +52,22 @@ struct MainView: View {
                         },
                         .default(Text("Месяц")) {
                             
-                        }, 
-                        .default(Text("Год")) {
-                            
                         },
                         .default(Text("Период")) {
-                            
+                            isSelectionPeriod.toggle()
                         },
                         .cancel()
                     ]
                 )
-                
-            }
-            .navigationBarBackButtonHidden(true)
+            }.overlay(
+                isSelectionPeriod ? AnyView(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)) : AnyView(EmptyView())
+            )
+            .overlay(
+                isSelectionPeriod ? AnyView(SelectionPeriodView(showModal: $isSelectionPeriod, showingCalendarFilter: $showingCalendarFilter)) : AnyView(EmptyView())
+            )
         }
     }
 }
-
 #Preview {
     MainView()
         .environmentObject(ModelData())

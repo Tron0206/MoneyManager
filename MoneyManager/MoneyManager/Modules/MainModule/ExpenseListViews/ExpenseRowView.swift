@@ -38,7 +38,7 @@ struct ExpenseRowView: View {
                 .fill(bckgColor)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.colorBar, lineWidth: 1)
+                        .stroke(Color(hex: "498DB4"), lineWidth: 1)
                 )
                 .padding(.horizontal, -10)
         )
