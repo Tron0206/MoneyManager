@@ -14,7 +14,6 @@ enum TransactionType {
 
 struct MainView: View {
     @EnvironmentObject var modelData: ModelData
-    
     @State private var showingCalendarFilter = false
     @State private var selectedTab = 0
     

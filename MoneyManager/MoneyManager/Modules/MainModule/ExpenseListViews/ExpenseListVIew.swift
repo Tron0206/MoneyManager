@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExpenseListView: View {
     var category: Category
+    @Environment(\.presentationMode) var presentationMode
     var transactionType: TransactionType
     @State var expenses: [Expense] = [ // Пример данных
         Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
@@ -17,6 +18,9 @@ struct ExpenseListView: View {
             self.category = category
             self.transactionType = transactionType
             self._expenses = State(initialValue: [ //вот здесь будет работать fetchExpenses()
+                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
                 Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
             ])
         }
@@ -24,6 +28,7 @@ struct ExpenseListView: View {
     private var descColor = Color(red: 70/255, green: 70/255, blue: 70/255)
     
     var body: some View {
+        
         VStack(spacing: 0) {
             // Верхняя панель
             ZStack(alignment: .bottom) {
@@ -32,7 +37,10 @@ struct ExpenseListView: View {
                     .frame(height: 130)
                     .cornerRadius(25.0)
                 HStack {
-                    NavigationLink(destination: MainView().environmentObject(ModelData()))
+                    Button{
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                label:
                      {
                         HStack {
                             Image(systemName: "chevron.left")
@@ -58,38 +66,12 @@ struct ExpenseListView: View {
             // Список транзакций
             List {
                 ForEach(expenses.indices, id: \.self) { index in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack{
-                                Text(expenses[index].category).lineLimit(1)
-                                    .font(.headline)
-                                Text("(\(expenses[index].date))")
-                                    .font(.caption2)
-                                    .foregroundStyle(.blue)
-                            }
-                            Text(expenses[index].descr ?? "").lineLimit(1)
-                                .font(.subheadline)
-                                .foregroundColor(descColor)
-                        }
-                        Spacer()
-                        Text("$\(expenses[index].fee, specifier: "%.2f")")
-                            .font(.body)
-                            .foregroundColor(.black)
-                    }
-                    .listRowInsets(EdgeInsets(top: 10, leading: 20, bottom: 4, trailing: 20))
-                    .padding(.vertical, 8)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(bckgColor)
-                            .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.colorBar, lineWidth: 1)
-                                )
-                            .padding(.horizontal, -10)
-                    )
-                    .listRowSeparator(.hidden)
-                }
-                
+                    ExpenseRowView(
+                                expense: expenses[index],
+                                bckgColor: bckgColor,
+                                descColor: descColor
+                            )
+                        }                
                 .onDelete(perform: deleteExpense)
             }
             .listStyle(PlainListStyle())
