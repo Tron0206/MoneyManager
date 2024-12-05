@@ -12,4 +12,5 @@ struct Expense: Codable {
     let fee: Double
     let category: String
     let date: String
+    let descr: String?
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */; };
+		03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */; };
 		2CBBAC972CF11214005EDE41 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC962CF11214005EDE41 /* PageView.swift */; };
 		2CBBAC9A2CF12A78005EDE41 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC992CF12A78005EDE41 /* PieChartView.swift */; };
 		2CBBAC9D2CF12E90005EDE41 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC9C2CF12E90005EDE41 /* ModelData.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListVIew.swift; sourceTree = "<group>"; };
+		03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
 		2CBBAC962CF11214005EDE41 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		2CBBAC992CF12A78005EDE41 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		2CBBAC9C2CF12E90005EDE41 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -87,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032EE8632CFCEC0000949922 /* ExpenseListViews */ = {
+			isa = PBXGroup;
+			children = (
+				032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */,
+				03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */,
+			);
+			path = ExpenseListViews;
+			sourceTree = "<group>";
+		};
 		2CBBAC932CF1108E005EDE41 /* PageViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +200,7 @@
 		8F23D9792CF8FD0500C5F99C /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				032EE8632CFCEC0000949922 /* ExpenseListViews */,
 				2CBBAC932CF1108E005EDE41 /* PageViews */,
 				2CBBACAA2CF1F3BA005EDE41 /* CategoryViews */,
 				2CBBAC9B2CF12E5C005EDE41 /* Model */,
@@ -355,10 +369,12 @@
 				8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */,
 				2CBBAC9D2CF12E90005EDE41 /* ModelData.swift in Sources */,
 				2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */,
+				032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */,
 				8FB5CD662CFCA1B800534832 /* Color+hex.swift in Sources */,
 				8FB5CD632CFC9FC900534832 /* RegistrationView.swift in Sources */,
 				2CBBAC972CF11214005EDE41 /* PageView.swift in Sources */,
 				8FB5CD752CFCAC9500534832 /* PasswordField.swift in Sources */,
+				03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */,
 				8F06F16C2CEA33E400FA845B /* MoneyManagerApp.swift in Sources */,
 				8F23D9772CF8FB7200C5F99C /* Expense.swift in Sources */,
 				8FB5CD612CFC9F9B00534832 /* AuthorizationView.swift in Sources */,
