@@ -30,11 +30,12 @@ class DataService: ObservableObject {
                     let category = data["category"] as? String ?? ""
                     let fee = data["fee"] as? Double ?? 0
                     let date = data["date"] as? String ?? ""
+                    let descr = data["description"] as? String? ?? ""
 
-                    let expense = Expense(fee: fee, category: category, date: date)
+                    let expense = Expense(fee: fee, category: category, date: date, descr: descr)
                     self.expenses.append(expense)
                     print("=============Трата=============")
-                    print("Category: \(category), Fee: \(fee), Date: \(date)")
+                    print("Category: \(category), Fee: \(fee), Date: \(date), Description: \(descr ?? "")")
 
                 }
             }
@@ -50,7 +51,9 @@ class DataService: ObservableObject {
         ref.setData([
             "category": category,
             "fee": fee,
-            "date": date]){error in
+            "date": date
+//            "descr": descr
+        ]){error in
             if let error = error{
                 print("Ошибка при добавлении траты \(error.localizedDescription)")
             } else{

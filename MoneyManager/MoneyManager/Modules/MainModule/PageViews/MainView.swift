@@ -14,12 +14,12 @@ enum TransactionType {
 
 struct MainView: View {
     @EnvironmentObject var modelData: ModelData
-    
     @State private var showingCalendarFilter = false
     @State private var selectedTab = 0
     
+    @State private var isSelectionPeriod = false
     var body: some View {
-        NavigationView {
+        NavigationView{
             VStack {
                 TopBar(showingCalendarFilter: $showingCalendarFilter)
                     .padding(.bottom, -8)
@@ -40,34 +40,34 @@ struct MainView: View {
                     .padding(.top, -8)
             }
             .edgesIgnoringSafeArea(.vertical)
-        }
-        .tint(.black)
-        
-        
-        .actionSheet(isPresented: $showingCalendarFilter) {
-            ActionSheet(
-                title: Text("A Short Title is Best"),
-                message: Text("A message should be a short, complete sentence."),
-                buttons: [
-                    .default(Text("День")) {  // TODO: Сделать выбор промежутков времени
+            
+            
+            .actionSheet(isPresented: $showingCalendarFilter) {
+                ActionSheet(
+                    title: Text("A Short Title is Best"),
+                    message: Text("A message should be a short, complete sentence."),
+                    buttons: [
+                        .default(Text("День")) {  // TODO: Сделать выбор промежутков времени
                             
-                    },
-                    .default(Text("Месяц")) {
-
-                    },
-                    .default(Text("Год")) {
+                        },
+                        .default(Text("Месяц")) {
                             
-                    },
-                    .default(Text("Период")) {
-                            
-                    },
-                    .cancel()
-                ]
+                        },
+                        .default(Text("Период")) {
+                            isSelectionPeriod.toggle()
+                        },
+                        .cancel()
+                    ]
+                )
+            }.overlay(
+                isSelectionPeriod ? AnyView(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)) : AnyView(EmptyView())
+            )
+            .overlay(
+                isSelectionPeriod ? AnyView(SelectionPeriodView(showModal: $isSelectionPeriod, showingCalendarFilter: $showingCalendarFilter)) : AnyView(EmptyView())
             )
         }
     }
 }
-
 #Preview {
     MainView()
         .environmentObject(ModelData())

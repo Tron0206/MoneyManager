@@ -33,9 +33,11 @@ struct CategoryRow: View {
                     .frame(width: 10)
                 Text(category.name)
                     .font(.system(size: 14))
+                    .foregroundColor(.black)
                 Spacer()
                 Text(String(value))
                     .font(.system(size: 14))
+                    .foregroundColor(.black)
             }
             .padding(.horizontal, 40)
         }

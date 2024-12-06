@@ -22,6 +22,7 @@ struct RegistrationView: View {
                 Text("Регистрация")
                     .fontWeight(.bold)
                     .font(.custom("SF Pro Text", size: 32))
+                    .foregroundStyle(.white)
             }.position(x: 200, y: 77)
 
             VStack(spacing: 36) {
@@ -46,7 +47,7 @@ struct RegistrationView: View {
                         .background(Color(hex: "3D5AED"))
                         .font(.sfProDisplayRegular(size: 24))
                         .foregroundColor(.white)
-                        .cornerRadius(5)
+                        .clipShape(.capsule)
                         .padding(.horizontal)
                         .alert(isPresented: $error) {
                             Alert(title: Text("Неверные данные"), message: Text("Проверьте корректность введенной информации"), dismissButton: .default(Text("OK")))
