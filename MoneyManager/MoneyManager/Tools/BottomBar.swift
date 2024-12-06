@@ -70,6 +70,7 @@ struct BottomBar: View {
                 
                 NavigationLink {
                     AddTransactionView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     ZStack {
                         Rectangle()

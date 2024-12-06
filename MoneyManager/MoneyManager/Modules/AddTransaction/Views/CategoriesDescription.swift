@@ -19,33 +19,18 @@ struct CategoriesDescription: View {
         }
     }
     
-    let categories = TransactionModel.CategoryType.allCases // Использовать CategoryType
-
+    let categories: [TransactionModel.CategoryType] = TransactionModel.CategoryType.allCases
     
-    let icons = ["stethoscope.circle.fill", "balloon.fill", "house.fill", "carrot.fill", "fork.knife", "bus.fill", "graduationcap", "gift", "figure.2.and.child.holdinghands", "figure.yoga", "camera.macro", "tag", "macbook.gen1", "star.fill", "wifi", "hanger"]
-    
-    let iconColors: [Color] = [.red, .green, .yellow, .orange, .gray, .teal, .indigo, .green, .orange, .teal, .purple, .red, .green, .yellow, .primary, .cyan]
-    
-    struct CategoryItem {
-        var category: TransactionModel.CategoryType
-        var icon: String
-        var iconColor: Color
-    }
-        
-    var categoriesWithDetails: [CategoryItem] {
-        zip(categories, zip(icons, iconColors)).map { CategoryItem(category: $0.0, icon: $0.1.0, iconColor: $0.1.1) }
-    }
-    
-    var displayedCategories: [CategoryItem] {
-        showAllCategories ? categoriesWithDetails : Array(categoriesWithDetails.prefix(8))
+    var displayedCategories: [TransactionModel.CategoryType] {
+        showAllCategories ? Array(categories).dropLast() : Array(categories.prefix(8))
     }
     
     var body: some View {
         ScrollView {
             if showAllCategories {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(),spacing: 10), count: 2), spacing: 10) {
-                    ForEach(displayedCategories, id: \.category) { item in
-                        CategorySquare(title: item.category.name, icon: item.icon, iconColor: item.iconColor, selectedCategory: $selectedCategory)
+                    ForEach(displayedCategories, id: \.self) { category in
+                        CategorySquare(title: category.name, icon: category.icon, iconColor: category.iconColor, selectedCategory: $selectedCategory)
                     }
                 }
                 .padding([.top, .trailing, .leading])
@@ -87,8 +72,8 @@ struct CategoriesDescription: View {
                 }
             } else {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 2),spacing: 10) {
-                    ForEach(displayedCategories, id: \.category) { item in
-                        CategorySquare(title: item.category.name, icon: item.icon, iconColor: item.iconColor, selectedCategory: $selectedCategory)
+                    ForEach(displayedCategories, id: \.self) { category in
+                        CategorySquare(title: category.name, icon: category.icon, iconColor: category.iconColor, selectedCategory: $selectedCategory)
                     }
                 }
                 .padding([.top, .trailing, .leading])

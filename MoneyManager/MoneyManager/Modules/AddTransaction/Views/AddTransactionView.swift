@@ -8,40 +8,38 @@
 import SwiftUI
 
 struct AddTransactionView: View {
-    @State private var transactionName: String = ""
-    @State private var transactionValue: String = ""
-    @State private var transactionDate: Date = Date()
-    @State private var transactionType: String = "Расходы"
-    @State private var transactionDescription: String = ""
+    @Environment(\.presentationMode) var presentationMode
     
-    @State private var selectedCategory: String?
     @State private var showAllCategories: Bool = false
     
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
+    @ObservedObject var viewModel = AddTransactionViewModel()
+    
+    
     var body: some View {
         VStack {
             ZStack(alignment: .bottom) {
                 Rectangle()
-                    .fill(Color.colorBar)
+                    .fill(Color(hex: "498DB4"))
                     .frame(height: 50)
                     .offset(y: -50)
 
                 Rectangle()
-                    .fill(Color.colorBar)
+                    .fill(Color(hex: "498DB4"))
                     .frame(height: 100)
                     .cornerRadius(25.0)
                     .background(Color.clear)
                 
                 Text("Money Manager")
                     .font(.system(size: 24))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding(.bottom, 10)
             }
             
             
-            TextField("Название траты", text: $transactionName)
+            TextField("Название траты", text: $viewModel.transactionName)
                 .padding(10)
                 .overlay (
                     RoundedRectangle(cornerRadius: 10)
@@ -50,34 +48,10 @@ struct AddTransactionView: View {
                 .padding(.horizontal)
             
             HStack {
-                TextField("Сумма", text: $transactionValue)
+                TextField("Сумма", text: $viewModel.transactionValue)
                     .keyboardType(.decimalPad)
-                    .onChange(of: transactionValue) { newValue in
-                        var filteredValue = newValue.filter { $0.isNumber || $0 == "," || $0 == "." }
-                        
-                        if filteredValue.count == 1 && (filteredValue.first == "," || filteredValue.first == ".") {
-                            filteredValue = String(filteredValue.dropFirst())
-                        }
-
-                        if filteredValue.first == "0" {
-                            if filteredValue.count > 1 && filteredValue[filteredValue.index(after: filteredValue.startIndex)] != "." && filteredValue[filteredValue.index(after: filteredValue.startIndex)] != "," {
-                                filteredValue = String(filteredValue.dropFirst())
-                            }
-                        }
-
-                        let decimalCount = filteredValue.filter { $0 == "," || $0 == "." }.count
-                        if decimalCount > 1 {
-                            filteredValue = String(filteredValue.dropLast())
-                        }
-                        
-                        if let SeparatorIndex = filteredValue.firstIndex(where: { $0 == "," || $0 == "." }) {
-                            let afterDecimal = filteredValue[filteredValue.index(after: SeparatorIndex)...]
-                            if afterDecimal.count > 2 {
-                                filteredValue = String(filteredValue.dropLast())
-                            }
-                        }
-
-                        transactionValue = filteredValue
+                    .onChange(of: viewModel.transactionValue) { newValue in
+                        viewModel.validateValue(newValue: newValue)
                     }
                     .padding(10)
                 
@@ -87,6 +61,7 @@ struct AddTransactionView: View {
                     .frame(width: 25, height: 25)
                     .padding(10)
             }
+            
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.colorBar.opacity(0.4), lineWidth: 2)
@@ -96,7 +71,7 @@ struct AddTransactionView: View {
             
             DatePicker(
                 "Дата",
-                selection: $transactionDate,
+                selection: $viewModel.transactionDate,
                 displayedComponents: [.date]
             )
             .padding(10)
@@ -106,56 +81,30 @@ struct AddTransactionView: View {
             )
             .padding(.horizontal, 60)
             
-            let sides = ["Расходы", "Доходы"]
-            
-            
-            Picker("Тип", selection: $transactionType) {
-                ForEach(sides, id: \.self) { side in
-                    Text(side).tag(side)
+            Picker("Тип", selection: $viewModel.transactionType) {
+                ForEach(TransactionModel.TransactionType.allCases) { type in
+                    Text(type.rawValue).tag(type)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal, 16)
             .padding(.top, 6)
             
-            CategoriesDescription(showAllCategories: $showAllCategories, transactionDescription: $transactionDescription, selectedCategory: $selectedCategory)
+            CategoriesDescription(showAllCategories: $showAllCategories, transactionDescription: $viewModel.transactionDescription, selectedCategory: $viewModel.selectedCategory)
                 .padding(.top, -5)
             
             Spacer()
             
             Button {
-                guard !transactionName.isEmpty else {
-                    alertMessage = "Введите название транзакции"
+                do {
+                    try viewModel.addTransaction()
+                } catch let error as AddTransactionViewModel.Error {
+                    alertMessage = error.errorDescription
                     showAlert = true
-                    return
-                }
-                guard !["0", "0,00", "0,0", "0.00", "0.0", "", "0,", "0."].contains(transactionValue) else {
-                    alertMessage = "Введите сумму"
+                } catch {
+                    alertMessage = "Неизвестная ошибка"
                     showAlert = true
-                    return
                 }
-                guard selectedCategory != nil else {
-                    alertMessage = "Выбирите категорию"
-                    showAlert = true
-                    return
-                }
-                
-                let transactionTypeEnum: TransactionModel.TransactionType = transactionType == "Доходы" ? .income : .expense
-                    
-                let selectedCategoryEnum: TransactionModel.CategoryType? = selectedCategory.flatMap { categoryString in
-                    TransactionModel.CategoryType.allCases.first { $0.name == categoryString }
-                }
-                    
-                
-                let transaction = TransactionModel(
-                    name: transactionName,
-                    value: Double(transactionValue.replacingOccurrences(of: ",", with: "."))!,
-                    date: transactionDate,
-                    transactionType: transactionTypeEnum,
-                    description: transactionDescription,
-                    categoryType: selectedCategoryEnum!
-                )
-                
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
@@ -177,7 +126,22 @@ struct AddTransactionView: View {
                 dismissButton: .default(Text("Ок"))
             )
         }
-
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .frame(width: 18, height: 24)
+                            .tint(.black)
+                        Text("Назад")
+                            .foregroundColor(.black)
+                            .font(.custom("SF Pro Text", size: 17))
+                    }
+                }
+            }
+        }
     }
 }
 
