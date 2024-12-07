@@ -17,8 +17,6 @@ struct CategoryRow: View {
             return category.income
         case .expense:
             return category.expenses
-        default:
-            return 0
         }
     }
     

@@ -49,20 +49,20 @@ struct PageView: View {
                 }
             }
                 
-                ScrollView {
-                    VStack {
-                        ForEach(categories) { category in
-                            NavigationLink(destination: ExpenseListView(category: category, transactionType: type)){
+            ScrollView {
+                VStack {
+                    ForEach(categories) { category in
+                        NavigationLink(destination: ExpenseListView(category: category, transactionType: type)){
                                 
-                                CategoryRow(category: category, type: type)
-                            }
+                            CategoryRow(category: category, type: type)
                         }
                     }
                 }
             }
-            .navigationBarBackButtonHidden(true)
         }
+        .navigationBarBackButtonHidden(true)
     }
+}
 
 #Preview {
     PageView(categories: ModelData().categories, type: .income)

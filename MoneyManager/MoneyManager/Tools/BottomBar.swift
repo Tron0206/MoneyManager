@@ -68,8 +68,9 @@ struct BottomBar: View {
                 
                 Spacer()
                 
-                Button {
-                    //do sth
+                NavigationLink {
+                    AddTransactionView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     ZStack {
                         Rectangle()
