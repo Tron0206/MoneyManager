@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExpenseRowView: View {
-    var expense: Expense
+    var transaction: TransactionModel
     var bckgColor: Color
     var descColor: Color
 
@@ -16,18 +16,18 @@ struct ExpenseRowView: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text(expense.category).lineLimit(1)
+                    Text(transaction.name).lineLimit(1)
                         .font(.headline)
-                    Text("(\(expense.date))")
+                    Text("(\(transaction.date))")
                         .font(.caption2)
                         .foregroundStyle(.blue)
                 }
-                Text(expense.descr ?? "").lineLimit(1)
+                Text(transaction.description).lineLimit(1)
                     .font(.subheadline)
                     .foregroundColor(descColor)
             }
             Spacer()
-            Text("\(expense.fee, specifier: "%.2f") ₽")
+            Text("\(transaction.value, specifier: "%.2f") ₽")
                 .font(.body)
                 .foregroundColor(.black)
         }

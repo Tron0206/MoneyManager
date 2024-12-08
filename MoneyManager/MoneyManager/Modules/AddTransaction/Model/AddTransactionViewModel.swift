@@ -29,9 +29,12 @@ class AddTransactionViewModel: ObservableObject {
     @Published var transactionName: String = ""
     @Published var transactionValue: String = ""
     @Published var transactionDate: Date = Date()
-    @Published var transactionType: TransactionModel.TransactionType = .expense
+    @Published var transactionType: TransactionType = .expense
     @Published var transactionDescription: String = ""
     @Published var selectedCategory: String? = nil
+    @Published var transactionID: String? = nil
+    
+    @Published var userId: String? = UserDefaults.standard.string(forKey: "userId")
     
     func validate() throws {
         guard !transactionName.isEmpty else { throw Error.invalidName }
@@ -67,20 +70,34 @@ class AddTransactionViewModel: ObservableObject {
         transactionValue = filteredValue
     }
     
-    func addTransaction() throws {
+    func addTransaction(dataService: DataService, isEditMode: Bool) throws {
         try validate()
-    
-        let selectedCategoryEnum: TransactionModel.CategoryType? = selectedCategory.flatMap { categoryString in
-            TransactionModel.CategoryType.allCases.first { $0.name == categoryString }
-        }
         
-        let transaction = TransactionModel(
-            name: transactionName,
-            value: Double(transactionValue.replacingOccurrences(of: ",", with: "."))!,
-            date: transactionDate,
-            transactionType: transactionType,
-            description: transactionDescription,
-            categoryType: selectedCategoryEnum!
-        )
+        let dateString = transactionDate.formatted(.dateTime.year().month().day())
+        
+        let doubleValue = Double(transactionValue.replacingOccurrences(of: ",", with: "."))
+        
+        if isEditMode {
+            dataService.editTransaction(
+                userId: userId!,
+                type: transactionType,
+                name: transactionName,
+                category: selectedCategory!,
+                fee: doubleValue!,
+                date: dateString,
+                description: transactionDescription,
+                transactionID: transactionID!
+            )
+        } else {
+            dataService.addTransaction(
+                userId: userId!,
+                type: transactionType,
+                name: transactionName,
+                category: selectedCategory!,
+                fee: doubleValue!,
+                date: dateString,
+                description: transactionDescription
+            )
+        }
     }
 }

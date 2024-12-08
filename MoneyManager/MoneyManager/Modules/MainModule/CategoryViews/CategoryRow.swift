@@ -11,17 +11,16 @@ struct CategoryRow: View {
     var category: Category
     var type: TransactionType
     
-    var value: Int {
+    var value: Double {
         switch type {
         case .income:
-            return category.income
+            return category.totalIncome
         case .expense:
-            return category.expenses
+            return category.totalExpenses
         }
     }
-    
-    var body: some View {
         
+    var body: some View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                 .stroke(Color.gray.opacity(0.3))
@@ -29,15 +28,19 @@ struct CategoryRow: View {
                 .padding(.horizontal, 20)
             HStack {
                 Circle()
-                    .fill(category.getColor())
+                    .fill(category.color)
                     .frame(width: 10)
                 Text(category.name)
                     .font(.system(size: 14))
                     .foregroundColor(.black)
                 Spacer()
-                Text(String(value))
+                Text(value.truncatingRemainder(dividingBy: 1) == 0 ?
+                     String(format: "%.0f", value).replacingOccurrences(of: ".", with: ",") + " ₽" :
+                     String(format: "%.2f", value).replacingOccurrences(of: ".", with: ",") + " ₽")
                     .font(.system(size: 14))
                     .foregroundColor(.black)
+                
+                
             }
             .padding(.horizontal, 40)
         }
@@ -47,5 +50,5 @@ struct CategoryRow: View {
 }
 
 #Preview {
-    CategoryRow(category: ModelData().categories[0], type: .income)
+    CategoryRow(category: DataService().categories[0], type: .income)
 }

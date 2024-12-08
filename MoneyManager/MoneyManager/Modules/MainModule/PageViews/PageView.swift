@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct PageView: View {
+    @EnvironmentObject var dataService: DataService
     
-    @EnvironmentObject var modelData: ModelData
-    
-    var categories: [Category]
     var type: TransactionType
     
-    var total: Int {
+    private var transactions: [TransactionModel] {
         switch type {
-        case .income: return modelData.totalIncome
-        case .expense: return modelData.totalExpenses
+            case .income:
+                return dataService.income
+            case .expense:
+                return dataService.expenses
+        }
+    }
+    
+    var total: Double {
+        switch type {
+            case .income:
+                return transactions.reduce(0) { $0 + $1.value }
+            case .expense:
+                return transactions.reduce(0) { $0 + $1.value }
         }
     }
     
@@ -32,7 +41,7 @@ struct PageView: View {
                     .font(.system(size: 16))
             }
             
-            PieChartView(categories: categories, type: type)
+            PieChartView(type: type)
                 .frame(width: 250.0)
             
             ZStack {
@@ -43,7 +52,9 @@ struct PageView: View {
                 HStack {
                     Text("Итого:")
                         .font(.system(size: 16))
-                    Text("\(total)")
+                    Text(total.truncatingRemainder(dividingBy: 1) == 0 ?
+                         String(format: "%.0f", total).replacingOccurrences(of: ".", with: ",") :
+                            String(format: "%.2f", total).replacingOccurrences(of: ".", with: ","))
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                 }
@@ -51,9 +62,12 @@ struct PageView: View {
                 
             ScrollView {
                 VStack {
-                    ForEach(categories) { category in
-                        NavigationLink(destination: ExpenseListView(category: category, transactionType: type)){
-                                
+                    ForEach(dataService.categories) { category in
+                        NavigationLink(
+                            destination:
+                                ExpenseListView(category: category, transactionType: type)
+                                    .environmentObject(dataService)
+                        ) {
                             CategoryRow(category: category, type: type)
                         }
                     }
@@ -65,6 +79,6 @@ struct PageView: View {
 }
 
 #Preview {
-    PageView(categories: ModelData().categories, type: .income)
-        .environmentObject(ModelData())
+    PageView(type: .expense)
+        .environmentObject(DataService())
 }

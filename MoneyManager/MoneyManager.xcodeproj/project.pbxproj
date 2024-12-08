@@ -11,11 +11,9 @@
 		03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */; };
 		2CBBAC972CF11214005EDE41 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC962CF11214005EDE41 /* PageView.swift */; };
 		2CBBAC9A2CF12A78005EDE41 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC992CF12A78005EDE41 /* PieChartView.swift */; };
-		2CBBAC9D2CF12E90005EDE41 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC9C2CF12E90005EDE41 /* ModelData.swift */; };
 		2CBBAC9F2CF12F30005EDE41 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC9E2CF12F30005EDE41 /* Category.swift */; };
 		2CBBACA62CF1E3F4005EDE41 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBACA52CF1E3F4005EDE41 /* CategoryRow.swift */; };
 		2CBBACA82CF1E809005EDE41 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBACA72CF1E809005EDE41 /* MainView.swift */; };
-		2CBBACB32CF20C67005EDE41 /* CategoryData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CBBACB12CF206F6005EDE41 /* CategoryData.json */; };
 		2CBBACB92CF5DACA005EDE41 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBACB82CF5DACA005EDE41 /* TopBar.swift */; };
 		2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBACBA2CF5DADB005EDE41 /* BottomBar.swift */; };
 		2CCD59882D034AA300FB2553 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD59832D034AA300FB2553 /* AddTransactionView.swift */; };
@@ -33,7 +31,6 @@
 		8F23D9712CF8FAE200C5F99C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F23D9702CF8FAE200C5F99C /* GoogleService-Info.plist */; };
 		8F23D9732CF8FB2700C5F99C /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F23D9722CF8FB2700C5F99C /* FirebaseAuthService.swift */; };
 		8F23D9752CF8FB4500C5F99C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F23D9742CF8FB4500C5F99C /* DataService.swift */; };
-		8F23D9772CF8FB7200C5F99C /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F23D9762CF8FB7200C5F99C /* Expense.swift */; };
 		8FB5CD612CFC9F9B00534832 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD602CFC9F9B00534832 /* AuthorizationView.swift */; };
 		8FB5CD632CFC9FC900534832 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD622CFC9FC900534832 /* RegistrationView.swift */; };
 		8FB5CD662CFCA1B800534832 /* Color+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB5CD652CFCA1B800534832 /* Color+hex.swift */; };
@@ -52,11 +49,9 @@
 		03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
 		2CBBAC962CF11214005EDE41 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		2CBBAC992CF12A78005EDE41 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
-		2CBBAC9C2CF12E90005EDE41 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		2CBBAC9E2CF12F30005EDE41 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		2CBBACA52CF1E3F4005EDE41 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		2CBBACA72CF1E809005EDE41 /* MainView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; tabWidth = 4; };
-		2CBBACB12CF206F6005EDE41 /* CategoryData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoryData.json; sourceTree = "<group>"; };
 		2CBBACB82CF5DACA005EDE41 /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
 		2CBBACBA2CF5DADB005EDE41 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		2CCD59812D034AA300FB2553 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -72,7 +67,6 @@
 		8F23D9702CF8FAE200C5F99C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F23D9722CF8FB2700C5F99C /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		8F23D9742CF8FB4500C5F99C /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		8F23D9762CF8FB7200C5F99C /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		8FB5CD602CFC9F9B00534832 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		8FB5CD622CFC9FC900534832 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		8FB5CD652CFCA1B800534832 /* Color+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+hex.swift"; sourceTree = "<group>"; };
@@ -129,20 +123,10 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		2CBBAC9B2CF12E5C005EDE41 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2CBBAC9C2CF12E90005EDE41 /* ModelData.swift */,
-				2CBBAC9E2CF12F30005EDE41 /* Category.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		2CBBACA02CF12F87005EDE41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				8FB5CD702CFCAAC300534832 /* Fonts */,
-				2CBBACB12CF206F6005EDE41 /* CategoryData.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -158,7 +142,6 @@
 		2CCD59822D034AA300FB2553 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2CCD59812D034AA300FB2553 /* TransactionModel.swift */,
 				2CCD598C2D034C8200FB2553 /* AddTransactionViewModel.swift */,
 			);
 			path = Model;
@@ -242,7 +225,6 @@
 				032EE8632CFCEC0000949922 /* ExpenseListViews */,
 				2CBBAC932CF1108E005EDE41 /* PageViews */,
 				2CBBACAA2CF1F3BA005EDE41 /* CategoryViews */,
-				2CBBAC9B2CF12E5C005EDE41 /* Model */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -259,9 +241,10 @@
 		8F23D97C2CF8FDC900C5F99C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8F23D9762CF8FB7200C5F99C /* Expense.swift */,
 				8F23D9722CF8FB2700C5F99C /* FirebaseAuthService.swift */,
 				8F23D9742CF8FB4500C5F99C /* DataService.swift */,
+				2CCD59812D034AA300FB2553 /* TransactionModel.swift */,
+				2CBBAC9E2CF12F30005EDE41 /* Category.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -379,7 +362,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FB5CD6E2CFCAA0D00534832 /* SFProDisplaySemibold.otf in Resources */,
-				2CBBACB32CF20C67005EDE41 /* CategoryData.json in Resources */,
 				8F23D9712CF8FAE200C5F99C /* GoogleService-Info.plist in Resources */,
 				8FB5CD6A2CFCA9F900534832 /* SFProDisplayBold.otf in Resources */,
 				8F06F1732CEA33E500FA845B /* Preview Assets.xcassets in Resources */,
@@ -411,7 +393,6 @@
 				2CCD598B2D034AA300FB2553 /* CategoriesDescription.swift in Sources */,
 				C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */,
 				8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */,
-				2CBBAC9D2CF12E90005EDE41 /* ModelData.swift in Sources */,
 				2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */,
 				032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */,
 				8FB5CD662CFCA1B800534832 /* Color+hex.swift in Sources */,
@@ -420,7 +401,6 @@
 				8FB5CD752CFCAC9500534832 /* PasswordField.swift in Sources */,
 				03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */,
 				8F06F16C2CEA33E400FA845B /* MoneyManagerApp.swift in Sources */,
-				8F23D9772CF8FB7200C5F99C /* Expense.swift in Sources */,
 				8FB5CD612CFC9F9B00534832 /* AuthorizationView.swift in Sources */,
 				2CBBAC9F2CF12F30005EDE41 /* Category.swift in Sources */,
 			);

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BottomBar: View {
     @Binding var selectedTab: Int
+    @EnvironmentObject var dataService: DataService
     
     var body: some View {
         ZStack() {
@@ -35,7 +36,7 @@ struct BottomBar: View {
                 Spacer()
                 
                 VStack(alignment: .center) {
-                    if selectedTab == 0 {
+                    if selectedTab == 1 {
                         Text("Доходы")
                             .foregroundStyle(.white)
                             .font(.system(size: 20))
@@ -70,6 +71,7 @@ struct BottomBar: View {
                 
                 NavigationLink {
                     AddTransactionView()
+                        .environmentObject(dataService)
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     ZStack {
@@ -91,4 +93,5 @@ struct BottomBar: View {
 
 #Preview {
     BottomBar(selectedTab: .constant(0))
+        .environmentObject(DataService())
 }

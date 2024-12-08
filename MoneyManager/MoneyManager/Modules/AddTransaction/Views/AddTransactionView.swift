@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddTransactionView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var dataService: DataService
     
     @State private var showAllCategories: Bool = false
     
@@ -17,6 +18,26 @@ struct AddTransactionView: View {
     
     @ObservedObject var viewModel = AddTransactionViewModel()
     
+    var transaction: TransactionModel?
+    
+    init(transaction: TransactionModel? = nil) {
+        self.transaction = transaction
+        if let transaction = transaction {
+            viewModel.transactionName = transaction.name
+            viewModel.transactionValue = String(transaction.value)
+            viewModel.selectedCategory = transaction.categoryType.name
+            viewModel.transactionDescription = transaction.description
+            viewModel.transactionDate = dateFormatter.date(from: transaction.date)!
+            viewModel.transactionType = transaction.transactionType
+            viewModel.transactionID = transaction.id
+        }
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, yyyy"
+        return formatter
+    }
     
     var body: some View {
         VStack {
@@ -82,8 +103,8 @@ struct AddTransactionView: View {
             .padding(.horizontal, 60)
             
             Picker("Тип", selection: $viewModel.transactionType) {
-                ForEach(TransactionModel.TransactionType.allCases) { type in
-                    Text(type.rawValue).tag(type)
+                ForEach(TransactionType.allCases) { type in
+                    Text(type.nameRussian).tag(type)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -97,7 +118,8 @@ struct AddTransactionView: View {
             
             Button {
                 do {
-                    try viewModel.addTransaction()
+                    try viewModel.addTransaction(dataService: dataService, isEditMode: transaction != nil)
+                    presentationMode.wrappedValue.dismiss()
                 } catch let error as AddTransactionViewModel.Error {
                     alertMessage = error.errorDescription
                     showAlert = true
@@ -109,7 +131,7 @@ struct AddTransactionView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.colorBar.opacity(0.5), lineWidth: 2)
-                    Text("Готово")
+                    Text(transaction != nil ? "Изменить" : "Готово")
                         .foregroundColor(.primary)
                         .font(.system(size: 20))
                 }
@@ -142,10 +164,12 @@ struct AddTransactionView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 
 #Preview {
     AddTransactionView()
+        .environmentObject(DataService())
 }
