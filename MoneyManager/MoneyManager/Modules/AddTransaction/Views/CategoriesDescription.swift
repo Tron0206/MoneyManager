@@ -56,7 +56,7 @@ struct CategoriesDescription: View {
                         
                         HStack() {
                             Image(systemName: "circle.grid.3x3.fill")
-                                .foregroundColor(.pink)
+                                .foregroundColor(Color(hex: "E187F8"))
                             
                             Spacer()
                             

@@ -57,11 +57,13 @@ class AuthorizationViewModel: ObservableObject {
     
     func logIn() {
         FirebaseAuthService.shared.logIn(email: email, password: password) { result in
-            switch result {
-            case .success(let id):
-                print(id)
-            case .failure(let error):
-                print(error)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let id):
+                    UserDefaults.standard.set(id, forKey: "userId")
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
