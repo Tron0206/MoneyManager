@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var appViewMod: appViewModel
     var body: some View {
         AuthorizationView()
     }

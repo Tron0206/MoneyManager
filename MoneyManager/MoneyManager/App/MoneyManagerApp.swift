@@ -16,15 +16,36 @@ struct MoneyManagerApp: App {
     @StateObject private var dataService = DataService()
     private let firebaseService = FirebaseAuthService.shared
     @State private var currentUserId: String?
+    @StateObject private var modelData = ModelData()
+    @ObservedObject var appViewMod = appViewModel()
     
     init() {
         FirebaseApp.configure()
         print("Firebase configured")
+        if UserDefaults.standard.bool(forKey: "isLogin"){
+            appViewMod.isLogin = true}
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if appViewMod.isLogin{
+                MainView()
+                    .environmentObject(modelData)
+                    .environmentObject(appViewMod)
+            }else{
+                AuthorizationView()
+                    .environmentObject(modelData)
+                    .environmentObject(appViewMod)
+            }
+
+        }
+    }
+}
+
+
+
+
+
 //                .onAppear {
 //                    firebaseService.logIn(email: "test1@example.com", password: "TestPassword123") { result in
 //                        switch result {
@@ -34,12 +55,9 @@ struct MoneyManagerApp: App {
 //                            // Вызываем функции после сохранения userId
 //                            dataService.addExpense(userId: userId, category: "Transport", fee: 1000, date: "2024-11-28")
 //                            dataService.fetchExpenses(for: userId)
-//                            
+//
 //                        case .failure(let error):
 //                            print("Ошибка входа: \(error.localizedDescription)")
 //                        }
 //                    }
 //                }
-        }
-    }
-}

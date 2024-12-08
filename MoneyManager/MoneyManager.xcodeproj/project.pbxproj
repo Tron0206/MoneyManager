@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0325EAD32D05CE5900E77897 /* appViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0325EAD22D05CE5900E77897 /* appViewModel.swift */; };
 		032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */; };
 		03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */; };
 		2CBBAC972CF11214005EDE41 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC962CF11214005EDE41 /* PageView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0325EAD22D05CE5900E77897 /* appViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appViewModel.swift; sourceTree = "<group>"; };
 		032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListVIew.swift; sourceTree = "<group>"; };
 		03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
 		2CBBAC962CF11214005EDE41 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				8F23D9762CF8FB7200C5F99C /* Expense.swift */,
 				8F23D9722CF8FB2700C5F99C /* FirebaseAuthService.swift */,
 				8F23D9742CF8FB4500C5F99C /* DataService.swift */,
+				0325EAD22D05CE5900E77897 /* appViewModel.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				2CBBACB92CF5DACA005EDE41 /* TopBar.swift in Sources */,
 				2CBBACA82CF1E809005EDE41 /* MainView.swift in Sources */,
 				8F23D9752CF8FB4500C5F99C /* DataService.swift in Sources */,
+				0325EAD32D05CE5900E77897 /* appViewModel.swift in Sources */,
 				2CBBAC9A2CF12A78005EDE41 /* PieChartView.swift in Sources */,
 				8FB5CD772CFCACB300534832 /* CustomTextField.swift in Sources */,
 				8F23D9732CF8FB2700C5F99C /* FirebaseAuthService.swift in Sources */,
