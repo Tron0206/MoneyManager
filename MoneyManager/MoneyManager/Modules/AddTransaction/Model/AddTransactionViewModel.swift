@@ -73,7 +73,13 @@ class AddTransactionViewModel: ObservableObject {
     func addTransaction(dataService: DataService, isEditMode: Bool) throws {
         try validate()
         
-        let dateString = transactionDate.formatted(.dateTime.year().month().day())
+        var dateFormatter: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy"
+            return formatter
+        }
+        
+        let dateString = dateFormatter.string(from: transactionDate)
         
         let doubleValue = Double(transactionValue.replacingOccurrences(of: ",", with: "."))
         

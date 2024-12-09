@@ -26,7 +26,7 @@ struct ExpenseListView: View {
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
+        formatter.dateFormat = "MMM dd, yyyy"
         return formatter
     }
     
