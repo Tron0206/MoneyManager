@@ -60,7 +60,7 @@ class AuthorizationViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let id):
-                    UserDefaults.standard.set(id, forKey: "userId")
+                    DataStore.shared.userId = id
                 case .failure(let error):
                     print(error)
                 }

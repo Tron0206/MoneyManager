@@ -70,7 +70,7 @@ struct BottomBar: View {
                 Spacer()
                 
                 NavigationLink {
-                    AddTransactionView()
+                    AddTransactionView(transaction: nil, dataService: dataService)
                         .environmentObject(dataService)
                         .navigationBarBackButtonHidden(true)
                 } label: {

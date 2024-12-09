@@ -84,7 +84,7 @@ struct ExpenseListView: View {
                 ForEach(sortedTransactions.indices, id: \.self) { index in
                     ZStack {
                         NavigationLink(
-                            destination: AddTransactionView(transaction: selectedTransaction),
+                            destination: AddTransactionView(transaction: selectedTransaction, dataService: dataService),
                             isActive: Binding(
                                 get: { selectedTransaction == sortedTransactions[index] },
                                 set: { if !$0 { selectedTransaction = nil } }
@@ -93,12 +93,15 @@ struct ExpenseListView: View {
                             EmptyView()
                         }
                         .hidden()
-                        
-                        ExpenseRowView(
-                            transaction: sortedTransactions[index],
-                            bckgColor: bckgColor,
-                            descColor: descColor
-                        )
+                        Button {
+                            selectedTransaction = sortedTransactions[index]
+                        } label: {
+                            ExpenseRowView(
+                                transaction: sortedTransactions[index],
+                                bckgColor: bckgColor,
+                                descColor: descColor
+                            )
+                        }
                         .swipeActions(edge: .leading) {
                             Button("Редактировать") {
                                 selectedTransaction = sortedTransactions[index]
@@ -127,7 +130,7 @@ struct ExpenseListView: View {
         offsets.forEach { index in
             let transaction = transactions[index]
             transactions.remove(at: index)
-            dataService.deleteTransaction(userId: dataService.userId!, type: transactionType, transactionID: transaction.id)
+            dataService.deleteTransaction(type: transactionType, transactionID: transaction.id)
         }
     }
 }

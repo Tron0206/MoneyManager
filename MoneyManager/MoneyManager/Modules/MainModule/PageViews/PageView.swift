@@ -63,12 +63,16 @@ struct PageView: View {
             ScrollView {
                 VStack {
                     ForEach(dataService.categories) { category in
-                        NavigationLink(
-                            destination:
-                                ExpenseListView(category: category, transactionType: type)
+                        if (type == .expense && !category.expenses.isEmpty) || (type == .income && !category.income.isEmpty) {
+                            NavigationLink(
+                                destination:
+                                    ExpenseListView(category: category, transactionType: type)
                                     .environmentObject(dataService)
-                        ) {
-                            CategoryRow(category: category, type: type)
+                            ) {
+                                CategoryRow(category: category, type: type)
+                            }
+                        } else {
+                            EmptyView()
                         }
                     }
                 }

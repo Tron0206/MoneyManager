@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-enum TransactionType: CaseIterable, Identifiable {
-    case expense
-    case income
+enum TransactionType: Int, CaseIterable, Identifiable {
+    case expense = 0
+    case income = 1
     
     var id: Self { self }
     

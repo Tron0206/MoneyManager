@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */; };
 		03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */; };
+		2CAB0AEF2D078A4400CEDD19 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB0AEE2D078A4400CEDD19 /* DataStore.swift */; };
 		2CBBAC972CF11214005EDE41 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC962CF11214005EDE41 /* PageView.swift */; };
 		2CBBAC9A2CF12A78005EDE41 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC992CF12A78005EDE41 /* PieChartView.swift */; };
 		2CBBAC9F2CF12F30005EDE41 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBBAC9E2CF12F30005EDE41 /* Category.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListVIew.swift; sourceTree = "<group>"; };
 		03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
+		2CAB0AEE2D078A4400CEDD19 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		2CBBAC962CF11214005EDE41 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		2CBBAC992CF12A78005EDE41 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		2CBBAC9E2CF12F30005EDE41 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				8F23D9742CF8FB4500C5F99C /* DataService.swift */,
 				2CCD59812D034AA300FB2553 /* TransactionModel.swift */,
 				2CBBAC9E2CF12F30005EDE41 /* Category.swift */,
+				2CAB0AEE2D078A4400CEDD19 /* DataStore.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				2CCD59892D034AA300FB2553 /* CategorySquare.swift in Sources */,
 				2CCD598A2D034AA300FB2553 /* TransactionModel.swift in Sources */,
 				2CCD598B2D034AA300FB2553 /* CategoriesDescription.swift in Sources */,
+				2CAB0AEF2D078A4400CEDD19 /* DataStore.swift in Sources */,
 				C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */,
 				8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */,
 				2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */,

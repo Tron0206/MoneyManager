@@ -25,7 +25,8 @@ class AddTransactionViewModel: ObservableObject {
             }
         }
     }
-    
+    @Published var originalTransaction: TransactionModel?
+        
     @Published var transactionName: String = ""
     @Published var transactionValue: String = ""
     @Published var transactionDate: Date = Date()
@@ -34,7 +35,27 @@ class AddTransactionViewModel: ObservableObject {
     @Published var selectedCategory: String? = nil
     @Published var transactionID: String? = nil
     
-    @Published var userId: String? = UserDefaults.standard.string(forKey: "userId")
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }
+    
+    private var dataService: DataService
+    
+    init(dataService: DataService, editTransaction: TransactionModel? = nil) {
+        self.dataService = dataService 
+        if let editTransaction {
+            self.originalTransaction = editTransaction
+            self.transactionName = editTransaction.name
+            self.transactionValue = String(editTransaction.value)
+            self.transactionDate = dateFormatter.date(from: editTransaction.date)!
+            self.transactionType = editTransaction.transactionType
+            self.transactionDescription = editTransaction.description
+            self.selectedCategory = editTransaction.categoryType.name
+            self.transactionID = editTransaction.id
+        }
+    }
     
     func validate() throws {
         guard !transactionName.isEmpty else { throw Error.invalidName }
@@ -70,33 +91,38 @@ class AddTransactionViewModel: ObservableObject {
         transactionValue = filteredValue
     }
     
-    func addTransaction(dataService: DataService, isEditMode: Bool) throws {
+    func addTransaction(isEditMode: Bool) throws {
         try validate()
-        
-        var dateFormatter: DateFormatter {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd, yyyy"
-            return formatter
-        }
         
         let dateString = dateFormatter.string(from: transactionDate)
         
         let doubleValue = Double(transactionValue.replacingOccurrences(of: ",", with: "."))
         
         if isEditMode {
-            dataService.editTransaction(
-                userId: userId!,
-                type: transactionType,
-                name: transactionName,
-                category: selectedCategory!,
-                fee: doubleValue!,
-                date: dateString,
-                description: transactionDescription,
-                transactionID: transactionID!
-            )
+            if originalTransaction!.transactionType != transactionType
+            {
+                dataService.deleteTransaction(type: originalTransaction!.transactionType, transactionID: originalTransaction!.id)
+                dataService.addTransaction(
+                    type: transactionType,
+                    name: transactionName,
+                    category: selectedCategory!,
+                    fee: doubleValue!,
+                    date: dateString,
+                    description: transactionDescription
+                )
+            } else {
+                dataService.editTransaction(
+                    type: transactionType,
+                    name: transactionName,
+                    category: selectedCategory!,
+                    fee: doubleValue!,
+                    date: dateString,
+                    description: transactionDescription,
+                    transactionID: transactionID!
+                )
+            }
         } else {
             dataService.addTransaction(
-                userId: userId!,
                 type: transactionType,
                 name: transactionName,
                 category: selectedCategory!,

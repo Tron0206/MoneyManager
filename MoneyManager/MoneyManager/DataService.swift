@@ -12,8 +12,6 @@ import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 
 class DataService: ObservableObject {
-    @Published var userId: String? = UserDefaults.standard.string(forKey: "userId")
-    
     @Published var expenses: [TransactionModel] = []
     @Published var income: [TransactionModel] = []
     
@@ -22,16 +20,18 @@ class DataService: ObservableObject {
     @Published var isDataLoaded: Bool = false
     
     private let db = Firestore.firestore()
+    
+    private var userId: String? = DataStore.shared.userId 
 
     func loadData() {
-        guard let userId = userId else { return }
+        guard userId != nil else { return }
             
         self.isDataLoaded = false 
             
-        fetchTransaction(for: userId, type: .expense) { expenses in
+        fetchTransaction(type: .expense) { expenses in
             DispatchQueue.main.async {
                 self.expenses = expenses
-                self.fetchTransaction(for: userId, type: .income) { income in
+                self.fetchTransaction(type: .income) { income in
                     DispatchQueue.main.async {
                         self.income = income
                         self.makeCategories()
@@ -48,20 +48,18 @@ class DataService: ObservableObject {
             categories.append(Category(id: category.rawValue, name: category.name, expenses: [], totalExpenses: 0, income: [], totalIncome: 0, color: category.iconColor))
         }
         for transaction in expenses {
-            //print(transaction.categoryType.rawValue)
             categories[transaction.categoryType.rawValue].expenses.append(transaction)
             categories[transaction.categoryType.rawValue].totalExpenses += transaction.value
         }
         for transaction in income {
-            //print(transaction.categoryType.rawValue)
             categories[transaction.categoryType.rawValue].income.append(transaction)
             categories[transaction.categoryType.rawValue].totalIncome += transaction.value
         }
         self.categories = categories
     }
 
-    func fetchTransaction(for userId: String, type: TransactionType, completion: @escaping ([TransactionModel]) -> Void) {
-        let ref = db.collection("users").document(userId).collection(type.name)
+    func fetchTransaction(type: TransactionType, completion: @escaping ([TransactionModel]) -> Void) {
+        let ref = db.collection("users").document(self.userId!).collection(type.name)
         ref.getDocuments { snapshot, error in
             guard error == nil else {
                 print(error!.localizedDescription)
@@ -98,14 +96,14 @@ class DataService: ObservableObject {
         }
     }
 
-    func addTransaction(userId: String, type: TransactionType, name: String, category: String, fee: Double, date: String, description: String) {
+    func addTransaction(type: TransactionType, name: String, category: String, fee: Double, date: String, description: String) {
         guard let categoryType = TransactionModel.CategoryType.from(name: category)
         else {
             print("error: неверная категория \(category)")
             return
         }
         
-        let ref = db.collection("users").document(userId).collection(type.name).document()
+        let ref = db.collection("users").document(self.userId!).collection(type.name).document()
         let transactionID = ref.documentID
         
         let newTransaction = TransactionModel(
@@ -132,7 +130,8 @@ class DataService: ObservableObject {
             "category": category,
             "fee": fee,
             "date": date,
-            "description": description
+            "description": description,
+            "type": type.rawValue
         ]) { error in
             if let error = error {
                 print("Ошибка при добавлении транзакции \(error.localizedDescription)")
@@ -142,8 +141,8 @@ class DataService: ObservableObject {
         }
     }
     
-    func deleteTransaction(userId: String, type: TransactionType, transactionID: String) {
-        let ref = db.collection("users").document(userId).collection(type.name).document(transactionID)
+    func deleteTransaction(type: TransactionType, transactionID: String) {
+        let ref = db.collection("users").document(self.userId!).collection(type.name).document(transactionID)
         ref.delete { error in
             if let error = error {
                 print("Ошибка при удалении транзакции \(error.localizedDescription)")
@@ -161,7 +160,7 @@ class DataService: ObservableObject {
         }
     }
     
-    func editTransaction(userId: String, type: TransactionType, name: String, category: String, fee: Double, date: String, description: String, transactionID: String) {
+    func editTransaction(type: TransactionType, name: String, category: String, fee: Double, date: String, description: String, transactionID: String) {
         guard let categoryType = TransactionModel.CategoryType.from(name: category)
         else {
             print("error: неверная категория \(category)")
@@ -189,14 +188,15 @@ class DataService: ObservableObject {
                 }
         }
         
-        let ref = db.collection("users").document(userId).collection(type.name).document(transactionID)
+        let ref = db.collection("users").document(self.userId!).collection(type.name).document(transactionID)
         
         ref.setData([
             "name": name,
             "category": category,
             "fee": fee,
             "date": date,
-            "description": description
+            "description": description,
+            "type": type.rawValue
         ]) { error in
             if let error = error {
                 print("Ошибка при изменении транзакции \(error.localizedDescription)")
