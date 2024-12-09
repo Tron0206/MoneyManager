@@ -15,8 +15,20 @@ struct AddTransactionView: View {
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
-    @ObservedObject var viewModel = AddTransactionViewModel()
+    @ObservedObject var viewModel: AddTransactionViewModel
+        
+    var transaction: TransactionModel?
+        
+    init(transaction: TransactionModel? = nil, dataService: DataService) {
+        self.transaction = transaction
+        self.viewModel = AddTransactionViewModel(dataService: dataService, editTransaction: transaction)
+    }
     
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }
     
     var body: some View {
         VStack {
@@ -82,8 +94,8 @@ struct AddTransactionView: View {
             .padding(.horizontal, 60)
             
             Picker("Тип", selection: $viewModel.transactionType) {
-                ForEach(TransactionModel.TransactionType.allCases) { type in
-                    Text(type.rawValue).tag(type)
+                ForEach(TransactionType.allCases) { type in
+                    Text(type.nameRussian).tag(type)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -97,7 +109,8 @@ struct AddTransactionView: View {
             
             Button {
                 do {
-                    try viewModel.addTransaction()
+                    try viewModel.addTransaction(isEditMode: transaction != nil)
+                    presentationMode.wrappedValue.dismiss()
                 } catch let error as AddTransactionViewModel.Error {
                     alertMessage = error.errorDescription
                     showAlert = true
@@ -109,7 +122,7 @@ struct AddTransactionView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.colorBar.opacity(0.5), lineWidth: 2)
-                    Text("Готово")
+                    Text(transaction != nil ? "Изменить" : "Готово")
                         .foregroundColor(.primary)
                         .font(.system(size: 20))
                 }
@@ -142,10 +155,11 @@ struct AddTransactionView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 
 #Preview {
-    AddTransactionView()
+    AddTransactionView(transaction: nil, dataService: DataService())
 }

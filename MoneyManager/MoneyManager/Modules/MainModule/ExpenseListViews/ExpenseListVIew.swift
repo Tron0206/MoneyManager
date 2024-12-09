@@ -10,20 +10,36 @@ import SwiftUI
 struct ExpenseListView: View {
     var category: Category
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var dataService: DataService
+    
     var transactionType: TransactionType
-    @State var expenses: [Expense] = [ // Пример данных
-        Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-    ]
+    
+    @State private var transactions: [TransactionModel]
+        
+    @State private var selectedTransaction: TransactionModel?
+        
     init(category: Category, transactionType: TransactionType) {
-            self.category = category
-            self.transactionType = transactionType
-            self._expenses = State(initialValue: [ //вот здесь будет работать fetchExpenses()
-                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-                Expense(fee: 150.0, category: "Название", date: "2024-11-11", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-            ])
+        self.category = category
+        self.transactionType = transactionType
+        _transactions = State(initialValue: transactionType == .income ? category.income : category.expenses)
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }
+    
+    private var sortedTransactions: [TransactionModel] {
+        transactions.sorted { t1, t2 in
+            if let date1 = dateFormatter.date(from: t1.date),
+                let date2 = dateFormatter.date(from: t2.date) {
+                return date1 > date2
+            }
+            return false
         }
+    }
+    
     private var bckgColor = Color(red:225/255, green: 225/255, blue: 225/255)
     private var descColor = Color(red: 70/255, green: 70/255, blue: 70/255)
     
@@ -34,14 +50,14 @@ struct ExpenseListView: View {
             ZStack(alignment: .bottom) {
                 Rectangle()
                     .fill(Color(hex: "498DB4"))
-                    .frame(height: 130)
+                    .frame(height: 100)
                     .cornerRadius(25.0)
                 HStack {
                     Button{
                         presentationMode.wrappedValue.dismiss()
                     }
                 label:
-                     {
+                    {
                         HStack {
                             Image(systemName: "chevron.left")
                                 .font(.title2)
@@ -60,18 +76,42 @@ struct ExpenseListView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 13)
-                .padding(.bottom, 30)
+                .padding(.bottom, 10)
             }
             
             // Список транзакций
             List {
-                ForEach(expenses.indices, id: \.self) { index in
-                    ExpenseRowView(
-                                expense: expenses[index],
+                ForEach(sortedTransactions.indices, id: \.self) { index in
+                    ZStack {
+                        NavigationLink(
+                            destination: AddTransactionView(transaction: selectedTransaction, dataService: dataService),
+                            isActive: Binding(
+                                get: { selectedTransaction == sortedTransactions[index] },
+                                set: { if !$0 { selectedTransaction = nil } }
+                            )
+                        ) {
+                            EmptyView()
+                        }
+                        .hidden()
+                        Button {
+                            selectedTransaction = sortedTransactions[index]
+                        } label: {
+                            ExpenseRowView(
+                                transaction: sortedTransactions[index],
                                 bckgColor: bckgColor,
                                 descColor: descColor
                             )
-                        }                
+                        }
+                        .swipeActions(edge: .leading) {
+                            Button("Редактировать") {
+                                selectedTransaction = sortedTransactions[index]
+                            }
+                            .tint(.blue)
+                        }
+                    }
+                    .padding(.vertical, -7)
+                    .listRowSeparator(.hidden)
+                }
                 .onDelete(perform: deleteExpense)
             }
             .listStyle(PlainListStyle())
@@ -79,14 +119,18 @@ struct ExpenseListView: View {
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarBackButtonHidden(true)
+        .onChange(of: dataService.categories) { updatedCategory in
+            if let index = updatedCategory.firstIndex(where: { $0.id == category.id }) {
+                self.transactions = transactionType == .income ? updatedCategory[index].income : updatedCategory[index].expenses
+            }
+        }
     }
     
     private func deleteExpense(at offsets: IndexSet) {
-        expenses.remove(atOffsets: offsets)
-        // добавить вызов функции для удаления из базы данных
+        offsets.forEach { index in
+            let transaction = transactions[index]
+            transactions.remove(at: index)
+            dataService.deleteTransaction(type: transactionType, transactionID: transaction.id)
+        }
     }
-}
-
-#Preview {
-    ExpenseListView(category: Category(id: 1, name: "Еда", income: 0, expenses: 100, color: "#FF5733"), transactionType: .expense)
 }
