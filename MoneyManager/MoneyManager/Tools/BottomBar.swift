@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BottomBar: View {
     @Binding var selectedTab: Int
+    @State private var showProfileScreen = false
     
     var body: some View {
         ZStack() {
@@ -18,7 +19,7 @@ struct BottomBar: View {
                 .cornerRadius(25.0)
             HStack(alignment: .center) {
                 Button {
-                    //do sth
+                    showProfileScreen.toggle()
                 } label: {
                     ZStack {
                         Rectangle()
@@ -30,6 +31,9 @@ struct BottomBar: View {
                             .foregroundStyle(.white)
                             .font(.title)
                     }
+                }
+                .sheet(isPresented: $showProfileScreen) {
+                    ProfileScreenView()
                 }
                 
                 Spacer()

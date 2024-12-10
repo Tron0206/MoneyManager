@@ -19,7 +19,7 @@ struct MainView: View {
     
     @State private var isSelectionPeriod = false
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack {
                 TopBar(showingCalendarFilter: $showingCalendarFilter)
                     .padding(.bottom, -8)
@@ -59,13 +59,14 @@ struct MainView: View {
                         .cancel()
                     ]
                 )
-            }.overlay(
-                isSelectionPeriod ? AnyView(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)) : AnyView(EmptyView())
-            )
-            .overlay(
-                isSelectionPeriod ? AnyView(SelectionPeriodView(showModal: $isSelectionPeriod, showingCalendarFilter: $showingCalendarFilter)) : AnyView(EmptyView())
-            )
-        }
+            }
+//            }.overlay(
+//                isSelectionPeriod ? AnyView(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)) : AnyView(EmptyView())
+//            )
+//            .overlay(
+//                isSelectionPeriod ? AnyView(SelectionPeriodView(showModal: $isSelectionPeriod, showingCalendarFilter: $showingCalendarFilter)) : AnyView(EmptyView())
+//            )
+//        }
     }
 }
 #Preview {
