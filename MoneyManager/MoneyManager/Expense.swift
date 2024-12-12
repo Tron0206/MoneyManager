@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-struct Expense: Codable {
+struct Transaction: Codable {
+    let name: String
     let fee: Double
     let category: String
     let date: String
-    let descr: String?
+    let description: String?
 }

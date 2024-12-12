@@ -9,15 +9,26 @@ import SwiftUI
 
 
 struct PieChartView: View {
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var dataService: DataService
     
-    let categories: [Category]
+    var categories: [Category] {
+        dataService.categories
+    }
+    
     var type: TransactionType
+    
+    var total: Double {
+        switch type {
+            case .income:
+                return categories.reduce(0) { $0 + $1.totalIncome }
+            case .expense:
+                return categories.reduce(0) { $0 + $1.totalExpenses }
+        }
+    }
         
     var body: some View {
         Canvas { context, size in
-            let total = type == .income ? Double(modelData.totalIncome) : Double(modelData.totalExpenses)
-
+            
             context.translateBy(x: size.width * 0.5, y: size.height * 0.5)
             var pieContext = context
             pieContext.rotate(by: .degrees(-90))
@@ -25,8 +36,8 @@ struct PieChartView: View {
             var startAngle = Angle.zero
             
             let slices: [(Double, Color)] = categories.map { category in
-                let value = type == .income ? Double(category.income) : Double(category.expenses)
-                return (value, category.getColor())
+                let value = type == .income ? Double(category.totalIncome) : Double(category.totalExpenses)
+                return (value, category.color)
             }
                  
             for (value, color) in slices {
@@ -47,6 +58,6 @@ struct PieChartView: View {
 
 
 #Preview {
-    PieChartView(categories: ModelData().categories, type: .income)
-        .environmentObject(ModelData())
+    PieChartView(type: .income)
+        .environmentObject(DataService())
 }

@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct TransactionModel {
-    enum CategoryType: Int, CaseIterable {
+struct TransactionModel: Equatable {
+    enum CategoryType: Int, Identifiable, CaseIterable {
         case health
         case leisure
         case home
@@ -46,7 +46,7 @@ struct TransactionModel {
             case .wants: return "Хотелки"
             case .connectionAndInternet: return "Связь и Интернет"
             case .clothesAndShoes: return "Одежда и Обувь"
-            case .other: return "Прочее"
+            case .other: return "Другое"
             }
         }
             
@@ -68,57 +68,56 @@ struct TransactionModel {
             case .wants: return "star.fill"
             case .connectionAndInternet: return "wifi"
             case .clothesAndShoes: return "hanger"
-            case .other: return "questionmark.circle"
+            case .other: return "circle.grid.3x3.fill"
             }
         }
             
         var iconColor: Color {
             switch self {
-            case .health: return .red
-            case .leisure: return .green
-            case .home: return .yellow
-            case .products: return .orange
-            case .eatingOut: return .gray
-            case .transport: return Color.colorBar
-            case .education: return .indigo
-            case .gifts: return .green
-            case .family: return .orange
-            case .sport: return .teal
-            case .beauty: return .purple
-            case .subscription: return .red
-            case .gadgets: return .green
-            case .wants: return .yellow
-            case .connectionAndInternet: return .primary
-            case .clothesAndShoes: return .teal
-            case .other: return .gray
+            case .health: return Color(hex: "E35B5B")
+            case .leisure: return Color(hex: "FCA944")
+            case .home: return Color(hex: "F7E223")
+            case .products: return Color(hex: "98DE69")
+            case .eatingOut: return Color(hex: "E187F8")
+            case .transport: return Color(hex: "93BCE9")
+            case .education: return Color(hex: "431AF9")
+            case .gifts: return Color(hex: "289B32")
+            case .family: return Color(hex: "F28F2D")
+            case .sport: return Color(hex: "229ECB")
+            case .beauty: return Color(hex: "D91DE3")
+            case .subscription: return Color(hex: "FF2424")
+            case .gadgets: return Color(hex: "89F454")
+            case .wants: return Color(hex: "FFEC3E")
+            case .connectionAndInternet: return Color(hex: "000000")
+            case .clothesAndShoes: return Color(hex: "46F0DF")
+            case .other: return Color(hex: "E187F8")
             }
         }
             
         var id: Int {
             return self.rawValue + 1
         }
-    }
-    
-    enum TransactionType: String, CaseIterable, Identifiable {
-        case income = "Доход"
-        case expense = "Расход"
         
-        var id: Self { self }
+        static func from(name: String) -> TransactionModel.CategoryType? {
+            return TransactionModel.CategoryType.allCases.first { $0.name == name }
+        }
     }
     
     var name: String
     var value: Double
-    var date: Date
+    var date: String
     var transactionType: TransactionType
-    var description: String?
+    var description: String
     var categoryType: CategoryType
+    var id: String
     
-    init(name: String, value: Double, date: Date, transactionType: TransactionType, description: String?, categoryType: CategoryType) {
+    init(name: String, value: Double, date: String, transactionType: TransactionType, description: String, categoryType: CategoryType, id: String) {
         self.name = name
         self.value = value
         self.date = date
         self.transactionType = transactionType
         self.description = description
         self.categoryType = categoryType
+        self.id = id
     }
 }
