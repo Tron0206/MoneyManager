@@ -10,6 +10,7 @@ import SwiftUI
 struct BottomBar: View {
     @Binding var selectedTab: Int
     @EnvironmentObject var dataService: DataService
+    @EnvironmentObject var appViewMod: appViewModel
     
     var body: some View {
         ZStack() {
@@ -19,7 +20,8 @@ struct BottomBar: View {
                 .cornerRadius(25.0)
             HStack(alignment: .center) {
                 Button {
-                    //do sth
+                    UserDefaults.standard.set(false, forKey: "isLogin")
+                                        appViewMod.isLogin = false
                 } label: {
                     ZStack {
                         Rectangle()

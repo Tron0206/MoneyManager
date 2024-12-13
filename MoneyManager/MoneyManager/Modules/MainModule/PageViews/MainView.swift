@@ -29,7 +29,7 @@ enum TransactionType: Int, CaseIterable, Identifiable {
 }
 
 struct MainView: View {
-    @EnvironmentObject var dataService: DataService
+    @StateObject private var modelData = DataService()
     @State private var showingCalendarFilter = false
     @State private var selectedTab = 0
     
@@ -37,7 +37,7 @@ struct MainView: View {
 
     var body: some View {
         Group {
-            if !dataService.isDataLoaded {
+            if !modelData.isDataLoaded {
                 Image("background")
                     .resizable()
                     .ignoresSafeArea()
@@ -49,11 +49,11 @@ struct MainView: View {
                         
                         TabView(selection: $selectedTab) {
                             PageView(type: .expense)
-                                .environmentObject(dataService)
+                                .environmentObject(modelData)
                                 .tag(0)
                             
                             PageView(type: .income)
-                                .environmentObject(dataService)
+                                .environmentObject(modelData)
                                 .tag(1)
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -61,7 +61,7 @@ struct MainView: View {
                         
                         
                         BottomBar(selectedTab: $selectedTab)
-                            .environmentObject(dataService)
+                            .environmentObject(modelData)
                             .padding(.top, -8)
                     }
                     .edgesIgnoringSafeArea(.vertical)
@@ -93,7 +93,7 @@ struct MainView: View {
             }
         }
         .onAppear {
-            dataService.loadData()
+            modelData.loadData()
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0325EAD52D0B7A1B00E77897 /* appViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0325EAD42D0B7A1B00E77897 /* appViewModel.swift */; };
 		032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */; };
 		03DD5E842D00DDA600F3CDB0 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */; };
 		2CAB0AEF2D078A4400CEDD19 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB0AEE2D078A4400CEDD19 /* DataStore.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0325EAD42D0B7A1B00E77897 /* appViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appViewModel.swift; sourceTree = "<group>"; };
 		032EE8642CFCEC5F00949922 /* ExpenseListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListVIew.swift; sourceTree = "<group>"; };
 		03DD5E832D00DDA600F3CDB0 /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
 		2CAB0AEE2D078A4400CEDD19 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				2CCD59812D034AA300FB2553 /* TransactionModel.swift */,
 				2CBBAC9E2CF12F30005EDE41 /* Category.swift */,
 				2CAB0AEE2D078A4400CEDD19 /* DataStore.swift */,
+				0325EAD42D0B7A1B00E77897 /* appViewModel.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				2CCD598B2D034AA300FB2553 /* CategoriesDescription.swift in Sources */,
 				2CAB0AEF2D078A4400CEDD19 /* DataStore.swift in Sources */,
 				C6AC98992CFE56C3001C8CFD /* SelectionPeriodView.swift in Sources */,
+				0325EAD52D0B7A1B00E77897 /* appViewModel.swift in Sources */,
 				8FB5CD722CFCAAE100534832 /* Fonts.swift in Sources */,
 				2CBBACBB2CF5DADB005EDE41 /* BottomBar.swift in Sources */,
 				032EE8652CFCEC5F00949922 /* ExpenseListVIew.swift in Sources */,
