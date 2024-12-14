@@ -41,6 +41,7 @@ class FirebaseAuthService{
     func logOut(completion: @escaping(Result<Void, Error>) -> Void){
         do{
             try Auth.auth().signOut()
+            DataStore.shared.userId = nil
             completion(.success(()))
         } catch {
             completion(.failure(error))
